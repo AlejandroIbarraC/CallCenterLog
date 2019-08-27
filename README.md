@@ -1,5 +1,5 @@
 <p align="center"> 
-    <img src="https://bit.ly/2MEStaz" height="200"/>
+    <img src="https://bit.ly/2MEStaz" height="120" width="250"/>
 </p>
 
 # CE3104 - ITProLogBot
