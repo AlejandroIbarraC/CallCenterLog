@@ -48,14 +48,13 @@
 
 ## Vista Previa
 
-## Autores y agradecimientos
+## Autores
 
 * **Esteban Alvarado** - *Desarrollador* - [@estalvgs1999](https://github.com/estalvgs1999)
 * **Alejandro Ibarra** - *Desarrollador* - [@AlejandroIbarraC](https://github.com/AlejandroIbarraC)
 * **Jesús Sandoval** - *Desarrollador* - [@shuzz22260427](https://github.com/shuzz22260427)
 
-Agradecemos al profesor del curso:
-* **Ing. Marco Rivera Meneses** profesor de Lenguajes de Programación.
+<p align="center"> Proyecto desarrollado en el <b>Instituto Tecnológico de Costa Rica</b> | 2019 🄯</p>
 
 
 ## Licencia
