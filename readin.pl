@@ -1,14 +1,15 @@
-/*----------------------------------------------------------------------
-												CALL CENTER LOG - READIN
+/*-----------------------------------------------------------------------------
+	CALL CENTER LOG - READIN
 
 	Este código es un lector (reading) de las entradas del usuario. Su funciona-
 	miento general es relativamente sencillo: "Ingresa el usuario una oración
 	y readin(S) se encarga de retornar una lista cuyos elementos son las pala-
 	bras que componen la oración".
 
-	Ejemplo: ?- readin(S).
-					|:  Este es mi texto!
-					S = [este, es, mi, texto, !]
+	Ejemplo:
+	?- readin(S).
+	|:  Este es mi texto!
+	S = [este, es, mi, texto, !]
 
 	NOTA: El código está basado en el código de David Warren y Fernando Pereira
 	desarrollador del primer compilador de prolog, las modificaciones realizadas
@@ -36,7 +37,7 @@
 	_______________________________________________________________________
 
 	Código comentado y modificado por @estalvgs1999 (Sep 2019)
-  ----------------------------------------------------------------------*/
+  -----------------------------------------------------------------------------*/
 
 
 /* read_in(P) recibe una oración por parte del usuario, luego coloca todas las
