@@ -7,8 +7,8 @@
 	bras que componen la oración".
 
 	Ejemplo: ?- readin(S).
-					 |:  Este es mi texto!
-					 S = [este, es, mi, texto, !]
+					|:  Este es mi texto!
+					S = [este, es, mi, texto, !]
 
 	NOTA: El código está basado en el código de David Warren y Fernando Pereira
 	desarrollador del primer compilador de prolog, las modificaciones realizadas
