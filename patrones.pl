@@ -38,3 +38,11 @@ patronYo([cual, es, tu, estado, emocional, X |_], X):-!.
 patronYo([como, te, sientes, X |_], X):-!.
 patronYo([_|T], X):-
     patronYo(T, X).
+
+% patronProblema/2 (Nivel 2)
+% Busca patrones que indican un problema del usuario.
+patronProblema([tengo,un,problema, X |_], X):- !.
+patronProblema([no,funciona, X |_], X):-!.
+patronProblema([algo,anda,mal, X |_], X):-!.
+patronProblema([_|T],X):-
+  patronProblema(T,X).
