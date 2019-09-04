@@ -283,6 +283,76 @@ questions_db(info, [
         ['¿Como te llamas?']
         ]).
 
+% BASE DE DATOS DE REFERENCIAS
+% LAS REFERENCIAS SE NUMERAN COMO R + NUMERO DE REFERENCIA EN TABLA CSR.
+
+referencias(impresora, [
+        ['https://bit.ly/2ke9Xy9'], %R1
+        ['https://bit.ly/2lv5vLG'], %R2
+        ['https://bit.ly/2lv5vLG'], %R3
+        ['https://bit.ly/2lwYERM'], %R4
+        ['https://apple.co/1MdJTU2'], %R5
+        ['https://bit.ly/2jYsoqi'], %R6
+        ['https://bit.ly/2khQ3lV'], %R7
+        ['https://bit.ly/1LJKg8L'], %R8
+        ['https://bit.ly/2lv5WFO'], %R9
+        ['https://amzn.to/2jVFTHe'] %R10
+        ]).
+
+referencias(computadora, [
+        ['https://apple.co/2jXY7Ih'], %R1
+        ['https://apple.co/2eXIP0Z'], %R2
+        ['https://apple.co/2eXIP0Z'], %R3
+        ['https://apple.co/1ETEzVa'], %R4
+        ['https://apple.co/1MdJTU2'], %R5
+        ['https://apple.co/2ltdPeN'], %R6
+        ['https://apple.co/2luWvGq'], %R7
+        ['https://apple.co/2lwaWKc'], %R8
+        ['https://apple.co/1Npc1uP'], %R9
+        ['https://apple.co/1wEVLt4'] %R10
+        ]).
+
+referencias(parlante, [
+        ['https://bit.ly/2ke9Xy9'], %R1
+        ['https://bit.ly/2kqjWjR'], %R2
+        ['https://bit.ly/2jXhfpF'], %R3
+        ['https://bit.ly/2jXhfpF'], %R4
+        ['https://bit.ly/2GdDwcr'], %R5
+        ['https://bit.ly/2GdDwcr'], %R6
+        ['https://bit.ly/2luXx5g'], %R7
+        ['https://bit.ly/2lZcXyT'], %R8
+        ['https://bit.ly/2lukQfx'], %R9
+        ['https://amzn.to/2lYlH8o'] %R10
+        ]).
+
+referencias(audifonos, [
+        ['https://bose.life/2PCKJnX'], %R1
+        ['https://bose.life/2CghDXq'], %R2
+        ['https://bose.life/2kq8Jjj'], %R3
+        ['https://bose.life/2lhW6mU'], %R4
+        ['https://bose.life/2Fdebzg'], %R5
+        ['https://bose.life/2JBWGLo'], %R6
+        ['https://bose.life/2IPNRs4'], %R7
+        ['https://bose.life/2IPNRs4'], %R8
+        ['https://bose.life/2GK8yJA'], %R9
+        ['https://amzn.to/2lAO0cE'] %R10
+        ]).
+
+referencias(pareja, [
+        ['https://bit.ly/2kgGaVA'], %R1
+        ['https://bit.ly/2keguc9'], %R2
+        ['https://bit.ly/2kt1uaa'], %R3
+        ['https://bit.ly/2lSoK1H'], %R4
+        ['https://bit.ly/2lSoK1H'], %R5
+        ['https://bit.ly/2DIHSXH'], %R6
+        ['https://bit.ly/2jYyqaq'], %R7
+        ['https://bit.ly/2H9DnXR'], %R8
+        ['https://bit.ly/2kqsdUQ'], %R9
+        ['https://bit.ly/2krphYc'] %R10
+        ]).
+
+% DEFINICION DE ENTRADAS
+
 saludos([
         hola,
         hi,
