@@ -74,13 +74,19 @@ generarRespuesta(S, R):- % asking my name? (grammar)
     sentence(Tree1, Rep,[]),
     append(Rep, ['!'], R).
 generarRespuesta(S, R):- % buscar pregunta de mi nombre
-    patronNombre(S, _), !,
+    patronNombre(S, _), !, % Si lo que busca lo encuentra en un patrón, le brinda una respuesta [cut]
     respuestas(mi_nombre, D),
     respuestaAleatoria(D, R).
 generarRespuesta(S, R):- % preguntando sobre lo que estudio
     patronEstudios(S, _), !,
     respuestas(mi_estudio, D),
     respuestaAleatoria(D, R).
+
+% El usuario dice que tiene un problema.
+generarRespuesta(S,R):-
+	patronProblema(S,_),!,
+	respuestas(solucion, D),
+	respuestaAleatoria(D,R).
 generarRespuesta(S, R):- % asking how I am? (grammar)
     question(Tree2, S, _Rest), !,
     mapping(s2how,Tree1, Tree2),
@@ -255,4 +261,3 @@ print_report:-
         nl, information(X, Y), write(X), write(' : '), imprimirLista(Y),
         retract(information(X, Y)), fail.
 print_report.
-

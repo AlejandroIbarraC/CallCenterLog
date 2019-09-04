@@ -1,43 +1,22 @@
 /*-----------------------------------------------------------------------------
-	CALL CENTER LOG - READIN
-
-	Este código es un lector (reading) de las entradas del usuario. Su funciona-
-	miento general es relativamente sencillo: "Ingresa el usuario una oración
-	y readin(S) se encarga de retornar una lista cuyos elementos son las pala-
-	bras que componen la oración".
-
-	Ejemplo:
-	?- readin(S).
-	|:  Este es mi texto!
-	S = [este, es, mi, texto, !]
-
-	NOTA: El código está basado en el código de David Warren y Fernando Pereira
-	desarrollador del primer compilador de prolog, las modificaciones realizadas
-	han sido solo para agregar elementos del idioma español con el ascii exten-
-	dido.
-
-	Este código está basado en el código chat-80 de Warren y Pereira (1982)
-	source: http://nli-gems.org/system.php?id=chat-80
-
-	Artículos:
-	* An efficient easily adaptable system for interpreting natural
-		language queries - Pereira, Warren (1982)
-	* Efficient Processing of Interactive Relational Database Queries
-		Expressed in Logic - Warren (1981)
-	* Logic for natural language analysis - Pereira (1983)
-	* Issues in natural language access to databases from a logic
-		programming perspective - Warren (1982?)
-	______________________________________________________________________
-	Copyright (C)  David Warren and  Fernando Pereira
-	This program may be used, copied, altered or included in other programs
-	only for academic purposes and provided that the authorship of the initial
-	program is aknowledged.
-	Use for commercial purposes without the previous written agreement of
-	the authors is forbidden.
-	_______________________________________________________________________
-
-	Código comentado y modificado por @estalvgs1999 (Sep 2019)
-  -----------------------------------------------------------------------------*/
+ * Archivo: readin.pl
+ * Autor: David Warren, Fernando Pereira, Esteban Alvarado.
+ *
+ * Descripción: Este código es un lector (reading), el usuario ingresa una
+ * oración y retorna una lista cuyos elementos son las palabras que componen
+ * la oración.
+ *
+ * NOTA: El código está basado en el código de David Warren y Fernando Pereira
+ * desarrollador del primer compilador de prolog, las modificaciones realizadas
+ * han sido solo para agregar elementos del idioma español con el ascii exten-
+ * dido.
+ *
+ * Este código está basado en el código chat-80 de Warren y Pereira (1982)
+ *
+ * Copyright (C)  David Warren and  Fernando Pereira
+ *
+ * Código comentado y modificado por @estalvgs1999 (Sep 2019)
+-----------------------------------------------------------------------------*/
 
 
 /* read_in(P) recibe una oración por parte del usuario, luego coloca todas las
