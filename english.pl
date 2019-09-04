@@ -2,151 +2,213 @@
 
 :-[map].
 
-sentence( s(X,Y, is, Z) ) --> belonging_phrase(X), abstract_noun(Y),  
-                              [is],  special_noun(Z).
+oracion(o(X, Y, Z)) --> pregunta(X), pronombre_indirecto(Y), verbo(Z).
 
-sentence(s(X, Y, Z)) --> subject_pronoun(X), indicative_verb(Y), 
-                         adjective(Z).
+oracion(o(X, Y)) --> pregunta(X), adverbio(Y).
 
-sentence(s(X, Y, Z)) --> subject_phrase(X), verb(Y), object_phrase(Z).
+oracion(o(X, Y, Z)) --> pregunta(X), determinativos(Y), nombre_lugar(Z).
 
-sentence(s(X, Y, Z)) --> question(X), determiner(Y), place_name(Z).
+oracion(o(X, Y)) --> verbo(X), adjetivo(Y).
 
-sentence(s(X, Y)) --> determiner(X), place_name(Y).
+oracion(o(X, Y, Z, W)) --> determinativos(X), sustantivo(Y), verbo(Z), adjetivo(W).
+oracion(o(X, Y, Z, W)) --> pertenencia(X), sustantivo(Y), adverbio(Z), verbo(W).
 
-sentence(s(X, Y)) --> subject_tobe_verb(X), prepositional_phrase(Y).
+oracion(o(X, Y, Z, W)) --> determinativos(X), sustantivo(Y), adverbio(Z), verbo(W).
 
-sentence(s(X, Y, Z)) --> question(X), object_pronoun(Y), noun(Z).
+oracion(o(X, Y, Z, W)) --> pertenencia(X), sustantivo(Y), verbo(Z), verbo(W).
 
-belonging_phrase(belong(your)) --> [your].
-belonging_phrase(belong(my)) --> [my].
+oracion(o(X, Y, Z, W)) --> verbo(X), determinativos(Y), sustantivo(Z), adverbio(W).
 
-abstract_noun(abs_noun(name)) --> [name].
-
-special_noun(sp_noun(justin)) --> [justin].
-special_noun(sp_noun(frank)) --> [frank].
+oracion(o(X, Y)) --> verbo(X), frase_nominal(Y).
 
 
-subject_phrase(sp(X)) --> subject_pronoun(X).
-subject_phrase(sp(X)) --> noun_phrase(X).
 
-object_phrase(op(X,Y)) --> noun_phrase(X), adverb(Y).
-object_phrase(op(X, Y)) --> object_pronoun(X), adverb(Y).
+pertenencia(pertenece(tu)) --> [tuya].
+pertenencia(pertenece(tu)) --> [suya].
+pertenencia(pertenece(tu)) --> [su].
+pertenencia(pertenece(tu)) --> [tu].
+pertenencia(pertenece(tu)) --> [vuestra].
+pertenencia(pertenece(yo)) --> [mi].
+pertenencia(pertenece(yo)) --> [mia].
 
-noun_phrase(np(X, Y)) --> determiner(X), noun(Y).
-noun_phrase(np(Y)) --> noun(Y).
 
-prepositional_phrase(pp(X, Y)) --> preposition(X), place_name(Y).
 
-preposition(prep(in)) --> [in].
-preposition(prep(at)) --> [at].
-preposition(prep(from)) --> [from].
 
-place_name(pname(reception)) --> [reception].
-place_name(pname(cafe)) --> [cafe].
-place_name(pname(toilet)) --> [toilet].
-place_name(pname(vending_machines)) --> [vending_machines].
-place_name(pname(lockers)) --> [lockers].
-place_name(pname(exit)) --> [exit].
-place_name(pname(london)) --> [london].
-place_name(pname(bristol)) --> [bristol].
-place_name(pname(exeter)) --> [exeter].
-place_name(pname(X)) --> [X], { next(X,_,_,_,_) }.
+frase_nominal(fp(X, Y)) --> determinativos(X), sustantivo(Y).
+frase_nominal(fp(Y)) --> sustantivo(Y).
+frase_nominal(fp(X, Y)) --> pertenencia(X), sustantivo(Y).
 
-subject_pronoun(spn(i)) --> [i].
-subject_pronoun(spn(we)) --> [we].
-subject_pronoun(spn(you)) --> [you].
-subject_pronoun(spn(they)) --> [they].
-subject_pronoun(spn(he)) --> [he].
-subject_pronoun(spn(she)) --> [she].
-subject_pronoun(spn(it)) --> [it].
-subject_pronoun(spn(who)) --> [who].
 
-object_pronoun(opn(you))--> [you].
-object_pronoun(opn(your))--> [your].
-object_pronoun(opn(me))--> [me].
-object_pronoun(opn(us))--> [us].
-object_pronoun(opn(them))--> [them].
-object_pronoun(opn(him))--> [him].
-object_pronoun(opn(her))--> [her].
-object_pronoun(opn(it))--> [it].
+frase_preposicional(fp(X, Y)) --> preposicion(X), nombre_lugar(Y).
 
-determiner(dtmnr([])) --> [].
-determiner(dtmnr([a])) --> [a].
-determiner(dtmnr([the])) --> [the].
-determiner(dtmnr([my])) --> [my].
-determiner(dtmnr([some])) --> [some].
-determiner(dtmnr([all])) --> [all].
-determiner(dtmnr([that])) --> [that].
+preposicion(prep(dentro)) --> [en].
+preposicion(prep(sobre)) --> [sobre].
+preposicion(prep(desde)) --> [desde].
+preposicion(prep(a)) --> [a].
+preposicion(prep(entre)) --> [entre].
+preposicion(prep(abajo)) --> [abajo].
+preposicion(prep(bajo)) --> [bajo].
+preposicion(prep(hacia)) --> [hacia].
+preposicion(prep(para)) --> [para].
+preposicion(prep(por)) --> [por].
 
-noun(noun(uwe)) --> [uwe].
-noun(noun(cs_course)) --> [cs_course].
-noun(noun(robotics_course)) --> [robotics_course].
-noun(noun(robotics_course)) --> [computing_course].
-noun(noun(robotics_course)) --> [sd_course].
-noun(noun(name)) --> [name].
 
-adverb(ad([very, much])) --> [very, much].
-adverb(ad([how])) --> [how].
-adverb(ad([])) --> [].
 
-verb(vb(like)) --> [like].
-verb(vb(love)) --> [love].
-verb(vb(is)) --> [is].
 
-indicative_verb(ivb(are)) --> [are].
-indicative_verb(ivb(am)) --> [am].
 
-subject_tobe_verb(s_2b([you, are])) --> [you, are].
-subject_tobe_verb(s_2b([i,am])) --> [i, am].
-subject_tobe_verb(s_2b([we, are])) --> [we, are].
+nombre_lugar(nlugar(la, casa)) --> [casa].
+nombre_lugar(nlugar(el, hogar)) --> [hogar].
+nombre_lugar(nlugar(la, tienda)) --> [tienda].
+nombre_lugar(nlugar(el, local)) --> [local].
+nombre_lugar(nlugar(la, empresa)) --> [empresa].
+nombre_lugar(nlugar(la, compania)) --> [compania].
+nombre_lugar(nlugar(el, apartamento)) --> [apartamento].
+nombre_lugar(nlugar(el, departamento)) --> [departamento].
 
-adjective(adj(great)) --> [great].
-adjective(adj(good)) --> [good].
-adjective(adj(fine)) --> [fine].
 
-question(q(why,do,S)) --> [why, do], sentence(S).
-question(q(do,S)) --> [do], sentence(S).
-% for "how are you"
-question(q(X, Y, Z)) --> adverb(X), indicative_verb(Y), subject_pronoun(Z).
-% for "what is"
-question( q( what, is, X, Y ) ) -->  [what, is],  belonging_phrase(X),  
-                                     abstract_noun(Y).   
+pronombre_personal(pp(yo)) --> [yo].
+pronombre_personal(pp(nosotros)) --> [nosotros].
+pronombre_personal(pp(usted)) --> [usted].
+pronombre_personal(pp(ellos)) --> [ellos].
+pronombre_personal(pp(el)) --> [el].
+pronombre_personal(pp(ella)) --> [ella].
+pronombre_personal(pp(eso)) --> [eso].
+pronombre_personal(pp(quien)) --> [quien].
+pronombre_personal(pp(esa)) --> [esa].
+pronombre_personal(pp(vos)) --> [vos].
+pronombre_personal(pp(vososotros)) --> [vosotros].
+
+
+pronombre_indirecto(pi(me)) --> [me].
+pronombre_indirecto(pi(te)) --> [te].
+pronombre_indirecto(pi(se)) --> [se].
+pronombre_indirecto(pi(nos)) --> [nos].
+pronombre_indirecto(pi(os)) --> [os].
+
+
+determinativos(dtmnr([])) --> [].
+determinativos(dtmnr([la])) --> [la].
+determinativos(dtmnr([el])) --> [el].
+determinativos(dtmnr([su])) --> [su].
+determinativos(dtmnr([alguno])) --> [alguno].
+determinativos(dtmnr([alguna])) --> [alguna].
+determinativos(dtmnr([algunos])) --> [algunos].
+determinativos(dtmnr([algunas])) --> [algunas].
+determinativos(dtmnr([los])) --> [los].
+determinativos(dtmnr([las])) --> [las].
+determinativos(dtmnr([lo])) --> [lo].
+
+
+
+sustantivo(sustantivo(uwe)) --> [uwe].
+sustantivo(sustantivo(impresora)) --> [impresora].
+sustantivo(sustantivo(cable)) --> [cable].
+sustantivo(sustantivo(cartucho)) --> [cartucho].
+sustantivo(sustantivo(tinta)) --> [tinta].
+sustantivo(sustantivo(computadora)) --> [computadora].
+sustantivo(sustantivo(wi-fi)) --> [wi-fi].
+sustantivo(sustantivo(internet)) --> [internet].
+sustantivo(sustantivo(red)) --> [red].
+sustantivo(sustantivo(teclado)) --> [teclado].
+sustantivo(sustantivo(nombre)) --> [nombre].
+
+
+adverbio(ad([aqui])) --> [aqui].
+adverbio(ad([alla])) --> [alla].
+adverbio(ad([lejos])) --> [lejos].
+adverbio(ad([cerca])) --> [cerca].
+adverbio(ad([hoy])) --> [hoy].
+adverbio(ad([temprano])) --> [temprano].
+adverbio(ad([menos])) --> [menos].
+adverbio(ad([poco])) --> [poco].
+adverbio(ad([muy])) --> [muy].
+adverbio(ad([bastante])) --> [bastante].
+adverbio(ad([mucho])) --> [mucho].
+adverbio(ad([no])) --> [no].
+adverbio(ad([si])) --> [si].
+adverbio(ad([])) --> [].
+
+verbo(vb(conectar)) --> [conectar].
+verbo(vb(colocar)) --> [colocar].
+verbo(vb(es)) --> [es].
+verbo(vb(esta)) --> [esta].
+verbo(vb(coloca)) --> [coloca].
+verbo(vb(pone)) --> [pone].
+verbo(vb(coloco)) --> [coloco].
+verbo(vb(conectado)) --> [conectado].
+verbo(vb(roto)) --> [roto].
+verbo(vb(imprimido)) --> [imprimido].
+verbo(vb(impreso)) --> [impreso].
+verbo(vb(probado)) --> [probado].
+verbo(vb(pruebe)) --> [pruebe].
+verbo(vb(intente)) --> [intente].
+verbo(vb(intentado)) --> [intentado].
+verbo(vb(hace)) --> [hace].
+verbo(vb(sirve)) --> [sirve].
+verbo(vb(funciona)) --> [funciona].
+verbo(vb(puede)) --> [puede].
+verbo(vb(funcionando)) --> [funcionando].
+
+
+
+
+
+adjetivo(adj(gran)) --> [gran].
+adjetivo(adj(bueno)) --> [bueno].
+adjetivo(adj(bien)) --> [bien].
+adjetivo(adj(sirve)) --> [sirve].
+adjetivo(adj(dañado)) --> [dañado].
+adjetivo(adj(largo)) --> [largo].
+adjetivo(adj(inservible)) --> [inservible].
+adjetivo(adj(malo)) --> [malo].
+adjetivo(adj(caliente)) --> [caliente].
+
+
+
+pregunta(p(por, que)) --> [por, que].
+pregunta(p(como)) --> [como].
+pregunta(p(donde)) --> [donde].
+pregunta(p(cuando)) --> [cuando].
+pregunta(p(que)) --> [que].
+pregunta(p(quien)) --> [quien].
+pregunta(p(cual)) --> [cual].
+pregunta(p(a, donde)) --> [a, donde].
+pregunta(p(cuanto)) --> [cuanto].
 
 /* version 4 add rules for changing a sentence to a question, vice versa */
 
 mapping(s2why, % type of mapping is from a sentence to why question
-               % e.g [i,love,you] => [why,do,you,love,me] 
+               % e.g [i,love,you] => [why,do,you,love,me]
         s(sp(spn(N1)),vb(V),op(opn(N2),ad(X))),
-        q(why,do,s(sp(spn(P1)),vb(V),op(opn(P2),ad(X)))) 
-        ) :- 
-        mapping_spn(N1, P1), mapping_opn(N2, P2). 
-mapping(s2why, % 
-               % e.g [i,love,uwe] => [why,do,you,love,uwe] 
+        q(why,do,s(sp(spn(P1)),vb(V),op(opn(P2),ad(X))))
+        ) :-
+        mapping_spn(N1, P1), mapping_opn(N2, P2).
+mapping(s2why, %
+               % e.g [i,love,uwe] => [why,do,you,love,uwe]
         s(sp(spn(N1)),vb(V),op(np(noun(N2)),ad(X))),
-        q(why,do,s(sp(spn(P1)),vb(V),op(np(noun(N2)),ad(X)))) 
-        ) :- 
+        q(why,do,s(sp(spn(P1)),vb(V),op(np(noun(N2)),ad(X))))
+        ) :-
         mapping_spn(N1, P1).
 
 
 mapping(s2q, % type of mapping is from a sentence to question
-               % e.g [i,love,uwe] => [do,you,love,me] 
+               % e.g [i,love,uwe] => [do,you,love,me]
         s(sp(spn(N1)),vb(V),op(opn(N2),ad(X))),
-        q(do,s(sp(spn(P1)),vb(V),op(opn(P2),ad(X)))) 
-        ) :- 
-        mapping_spn(N1, P1), mapping_opn(N2, P2). 
-mapping(s2q, % 
-               % e.g [i,love,uwe] => [do,you,love,uwe] 
+        q(do,s(sp(spn(P1)),vb(V),op(opn(P2),ad(X))))
+        ) :-
+        mapping_spn(N1, P1), mapping_opn(N2, P2).
+mapping(s2q, %
+               % e.g [i,love,uwe] => [do,you,love,uwe]
         s(sp(spn(N1)),vb(V),op(np(noun(N2)),ad(X))),
-        q(do,s(sp(spn(P1)),vb(V),op(np(noun(N2)),ad(X)))) 
-        ) :- 
+        q(do,s(sp(spn(P1)),vb(V),op(np(noun(N2)),ad(X))))
+        ) :-
         mapping_spn(N1, P1).
 
 mapping(s2name,% what is your name -> my name is X
         s( belong(Y1), abs_noun(X2), is, sp_noun(Y2) ),
         q( what, is, belong(X1), abs_noun(X2) )
         ):-
-        mapping_belong(X1, Y1), mapping_noun(X2, Y2).
+        mapping_pertenece(X1, Y1), mapping_noun(X2, Y2).
 
 mapping(s2how, % how are you -> i am fine
         s(spn(X1), ivb(Y1), adj(_)),
@@ -154,8 +216,11 @@ mapping(s2how, % how are you -> i am fine
         ):-
         mapping_spn(X1, Z2), mapping_indicative(Y1, Y2).
 
-mapping_belong(my,your).
-mapping_belong(your,my).
+mapping_pertenece(mio, tuyo, suyo).
+mapping_pertenece(tuyo, mio, suyo).
+mapping_pertenece(suyo, mio, tuyo).
+
+
 
 mapping_noun(name, frank).
 mapping_noun(frank, name).
@@ -174,10 +239,10 @@ mapping_opn(me,you).
 
 % Experimental stuff
 %
-%question( q( what , is, X, Y)) -->  [what, is],  belonging_phrase(X),  
+%question( q( what , is, X, Y)) -->  [what, is],  belonging_phrase(X),
 %                                    abstract_noun((Y,_)).
 %
-%sentence(s(X,Y, is, Z)) --> belonging_phrase(X), abstract_noun((Y,Tag)),  
+%sentence(s(X,Y, is, Z)) --> belonging_phrase(X), abstract_noun((Y,Tag)),
 %                            [is],  special_noun((Tag,Z)).
 %
 %abstract_noun((name, personname)) --> [name].
