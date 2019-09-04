@@ -3,6 +3,10 @@
 %
 % Descripción:  Base de datos general del programa
 
+respuestas(solucion, [['Tienes un problema'],
+        ['Puedo ayudarte!'],
+        ['Creo que tengo una solución para ti']]).
+
 respuestas(despedida, [
         ['Adios!'],
         ['Espero verte de nuevo pronto.'],
@@ -41,7 +45,7 @@ respuestas(obtener_nombre, [
         ['Necesito saber tu nomnbre!'],
         ['Vamos, como te llamas?']
         ]).
-            
+
 respuestas(mi_nombre, [
         ['Me dicen MP (MachineProlog), un gusto. Esto es CallCenterLog'],
         ['Soy MP! Aunque mi mama me llama MachineProlog. Soy tu representante de CallCenterLog'],
@@ -130,15 +134,15 @@ questions_db(feedback, [
         ]).
 
 questions_db(info, [
-        ['Okay, so where are you from?'],
-        ['Haha, fair enough. Which universities have you applied to (except UWE)?'],
-        ['Un gusto en conocerte. Con que dispositivo tienes un problema?'],
-        ['Como te llamas?']
+        [' ¡Genial!¿Cómo puedo ayudarte?'],
+        ['¿De dónde eres?'],
+        ['¡Un gusto en conocerte!'],
+        ['¿Como te llamas?']
         ]).
 
 saludos([
         hola,
-        hi, 
+        hi,
         hey,
         saludos
         ]).
