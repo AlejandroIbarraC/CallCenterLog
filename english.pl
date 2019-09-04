@@ -1,7 +1,5 @@
 % GLC TEMPORAL
 
-:-[map].
-
 oracion(o(X, Y, Z)) --> pregunta(X), pronombre_indirecto(Y), verbo(Z).
 
 oracion(o(X, Y)) --> pregunta(X), adverbio(Y).
@@ -144,6 +142,7 @@ verbo(vb(pruebe)) --> [pruebe].
 verbo(vb(intente)) --> [intente].
 verbo(vb(intentado)) --> [intentado].
 verbo(vb(hace)) --> [hace].
+verbo(vb(usar)) --> [usar].
 verbo(vb(sirve)) --> [sirve].
 verbo(vb(funciona)) --> [funciona].
 verbo(vb(puede)) --> [puede].
@@ -157,7 +156,8 @@ adjetivo(adj(gran)) --> [gran].
 adjetivo(adj(bueno)) --> [bueno].
 adjetivo(adj(bien)) --> [bien].
 adjetivo(adj(sirve)) --> [sirve].
-adjetivo(adj(da�ado)) --> [da�ado].
+adjetivo(adj(dañada)) --> [dañada].
+adjetivo(adj(dañado)) --> [dañado].
 adjetivo(adj(largo)) --> [largo].
 adjetivo(adj(inservible)) --> [inservible].
 adjetivo(adj(malo)) --> [malo].
@@ -174,92 +174,3 @@ pregunta(p(quien)) --> [quien].
 pregunta(p(cual)) --> [cual].
 pregunta(p(a, donde)) --> [a, donde].
 pregunta(p(cuanto)) --> [cuanto].
-
-/* version 4 add rules for changing a sentence to a question, vice versa */
-
-mapping(s2why, % type of mapping is from a sentence to why question
-               % e.g [i,love,you] => [why,do,you,love,me]
-        s(sp(spn(N1)),vb(V),op(opn(N2),ad(X))),
-        q(why,do,s(sp(spn(P1)),vb(V),op(opn(P2),ad(X))))
-        ) :-
-        mapping_spn(N1, P1), mapping_opn(N2, P2).
-mapping(s2why, %
-               % e.g [i,love,uwe] => [why,do,you,love,uwe]
-        s(sp(spn(N1)),vb(V),op(np(noun(N2)),ad(X))),
-        q(why,do,s(sp(spn(P1)),vb(V),op(np(noun(N2)),ad(X))))
-        ) :-
-        mapping_spn(N1, P1).
-
-
-mapping(s2q, % type of mapping is from a sentence to question
-               % e.g [i,love,uwe] => [do,you,love,me]
-        s(sp(spn(N1)),vb(V),op(opn(N2),ad(X))),
-        q(do,s(sp(spn(P1)),vb(V),op(opn(P2),ad(X))))
-        ) :-
-        mapping_spn(N1, P1), mapping_opn(N2, P2).
-mapping(s2q, %
-               % e.g [i,love,uwe] => [do,you,love,uwe]
-        s(sp(spn(N1)),vb(V),op(np(noun(N2)),ad(X))),
-        q(do,s(sp(spn(P1)),vb(V),op(np(noun(N2)),ad(X))))
-        ) :-
-        mapping_spn(N1, P1).
-
-mapping(s2name,% what is your name -> my name is X
-        s( belong(Y1), abs_noun(X2), is, sp_noun(Y2) ),
-        q( what, is, belong(X1), abs_noun(X2) )
-        ):-
-        mapping_pertenece(X1, Y1), mapping_noun(X2, Y2).
-
-mapping(s2how, % how are you -> i am fine
-        s(spn(X1), ivb(Y1), adj(_)),
-        q(ad(_), ivb(Y2), spn(Z2))
-        ):-
-        mapping_spn(X1, Z2), mapping_indicative(Y1, Y2).
-
-mapping_pertenece(mio, tuyo, suyo).
-mapping_pertenece(tuyo, mio, suyo).
-mapping_pertenece(suyo, mio, tuyo).
-
-
-
-mapping_noun(name, frank).
-mapping_noun(frank, name).
-
-mapping_indicative(are, am).
-mapping_indicative(am, are).
-
-mapping_ad(how, fine).
-mapping_ad(fine, how).
-
-mapping_spn(i, you).
-mapping_spn(you, i).
-
-mapping_opn(you,me).
-mapping_opn(me,you).
-
-% Experimental stuff
-%
-%question( q( what , is, X, Y)) -->  [what, is],  belonging_phrase(X),
-%                                    abstract_noun((Y,_)).
-%
-%sentence(s(X,Y, is, Z)) --> belonging_phrase(X), abstract_noun((Y,Tag)),
-%                            [is],  special_noun((Tag,Z)).
-%
-%abstract_noun((name, personname)) --> [name].
-%abstract_noun((hobby, activities)) --> [hobby].
-%abstract_noun((major, subjects)) --> [major].
-%
-%special_noun((personname,justin)) --> [justin].
-%special_noun((personname,chatbot)) --> [chatbot].
-%
-%special_noun((subjects, computer_science)) --> [computer_science].
-%special_noun((subjects, physics)) --> [physics].
-%
-%special_noun((activities, chatting)) --> [chatting].
-%special_noun((activities, swimming)) --> [swimming].
-%
-%mapping(s2relate,% experimental
-%        s( belong(Y1), abs_noun(X2), is, sp_noun(Y2) ),
-%        q( what, is, belong(X1), abs_noun(X2) )
-%        ):-
-%        mapping_belong(X1, Y1), mapping_noun(X2, Y2).

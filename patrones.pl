@@ -68,16 +68,56 @@ patronProblema([_|T], X):-
 % patronCausa/2 (Nivel 2)
 % Busca patrones en las causas de un problemas
 
-patronCausa([no, esta, conectada, X |_], X):- !.
-patronCausa([no, esta, encendida, X |_], X):- !.
-patronCausa([no, responde, X |_], X):- !.
-patronCausa([no, tiene, drivers, X |_], X):- !.
-patronCausa([no, esta, en, la, misma, red, X |_], X):- !.
-patronCausa([no, tiene, tinta, X |_], X):- !.
-patronCausa([no, tiene, papel, X |_], X):- !.
-patronCausa([esta, sucia, X |_], X):- !.
+% Causas impresora
+patronCausa(impresora,[no, esta, conectada, X |_], X, NS):- !, NS is 1.
+patronCausa(impresora,[no, esta, encendida, X |_], X, NS):- !, NS is 2.
+patronCausa(impresora,[no, enciende, X |_], X, NS):- !, NS is 2.
+patronCausa(impresora, [no, responde, X |_], X, NS):- !, NS is 3.
+patronCausa(impresora,[no, tiene, drivers, X |_], X, NS):- !, NS is 4.
+patronCausa(impresora, [no, esta, en, la, misma, red, wifi, X |_], X, NS):- !, NS is 5.
+patronCausa(impresora,[no, tiene, tinta, X |_], X, NS):- !, NS is 6.
+patronCausa(impresora,[no, tiene, papel, X |_], X, NS):- !, NS is 7.
+patronCausa(impresora,[cabezales, desalineados, X|_], X, NS):- !, NS is 8.
+patronCausa(impresora, [esta, sucia, X |_], X, NS):- !, NS is 9.
+patronCausa(impresora, [esta, vieja, X |_], X, NS):- !, NS is 10.
 
-patronCausa([_|T], X):-
-  patronCausa(T, X).
+% Causas computadora
+patronCausa(computadora, [esta, descargada, X |_], X, NS):-! ,NS is 1.
+patronCausa(computadora, [no, enciende, X |_], X, NS):- !, NS is 2.
+patronCausa(computadora, [no, esta, encendida, X |_], X, NS):-!, NS is 2.
+patronCausa(computadora, [no, responde, X |_], X, NS):- !, NS is 3.
+patronCausa(computadora, [no, esta, actualizada, X |_], X, NS):-!, NS is 4.
+patronCausa(computadora, [no, esta, conectada, al, wifi, X |_], X, NS):-!, NS is 5.
+patronCausa(computadora, [esta, desconectada, de, sus, datos, X |_], X, NS):-!, NS is 6.
+patronCausa(computadora, [esta, llena, X |_], X, NS):-!, NS is 7.
+patronCausa(computadora, [volumen, bajo, X |_], X, NS):-!, NS is 8.
+patronCausa(computadora, [esta, sucia, X |_], X, NS):- !, NS is 9.
+patronCausa(computadora, [esta, vieja, X |_], X, NS):- !, NS is 10.
 
-% patron
+% Causas Parlante
+patronCausa(parlante, [no, esta, conectado, X |_], X, NS):- !, NS is 1.
+patronCausa(parlante, [servicios, de, streaming, no, conectados, X |_], X, NS):-!, NS is 2.
+patronCausa(parlante, [volumen, bajo, X |_], X, NS):-!, NS is 3.
+patronCausa(parlante, [esta, pausado, X |_], X, NS):-!, NS is 4.
+patronCausa(parlante, [no, esta, conectado, a, la, red, X |_], X, NS):-!, NS is 5.
+patronCausa(parlante, [no, esta, en, la, misma, red, wifi, X |_], X, NS):-!, NS is 6.
+patronCausa(parlante, [el, sistema, no, esta, soportado, X |_], X, NS):- !, NS is 7.
+patronCausa(parlante, [alexa, desactivada, X |_], X, NS):- !, NS is 8.
+patronCausa(parlante, [esta, sucia, X |_], X, NS):- !, NS is 9.
+patronCausa(parlante, [esta, vieja, X |_], X, NS):- !, NS is 10.
+
+% Causas audifonos
+patronCausa(audifonos, [no, estan, cargados, X |_], X, NS):- !, NS is 1.
+patronCausa(audifonos, [no, estan, conectados, X |_], X, NS):- !, NS is 2.
+patronCausa(audifonos, [estan, mal, colocados, X |_], X, NS):- !, NS is 3.
+patronCausa(audifonos, [las, cubiertas, estan, deterioradas, X |_], X, NS):- !, NS is 4.
+patronCausa(audifonos, [estan, desactualizados, X |_], X, NS):- !, NS is 5.
+patronCausa(audifonos, [no, se, conectan, X |_], X, NS):- !, NS is 6.
+patronCausa(audifonos, [volumen, bajo, X |_], X, NS):-!, NS is 7.
+patronCausa(audifonos, [pausados, X |_], X, NS):- !, NS is 8.
+patronCausa(audifonos,  [estan, sucios, X |_], X, NS):- !, NS is 9.
+patronCausa(audifonos,  [estan, viejos, X |_], X, NS):- !, NS is 10.
+
+% patronCausa( Dispositivo, Lista, Comparador, Número de Solución).
+patronCausa(D, [_|T], X, NS):-
+  patronCausa(D, T, X, NS).

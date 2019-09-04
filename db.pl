@@ -3,9 +3,6 @@
 %
 % Descripción:  Base de datos general del programa
 
-respuestas(solucion, [['Tienes un problema'],
-        ['Puedo ayudarte!'],
-        ['Creo que tengo una solución para ti']]).
 
 respuestas(despedida, [
         ['Adios!'],
@@ -201,7 +198,7 @@ respuestas(pareja, [
 % BASE DE DATOS DE PREGUNTAS.
 % LAS CAUSAS DE PROBLEMAS SE NUMERAN CON C + NÚMERO DE CAUSA DE LA TABLA CSR.
 
-questions_db(impresora, [
+preguntas_db(impresora, [
         ['Esta conectada a la corriente?'], %C1
         ['Esta encendida?'], %C2
         ['Hay algun movimiento o respuesta?'], %C3
@@ -214,7 +211,7 @@ questions_db(impresora, [
         ['Esta vieja?'] %C10
         ]).
 
-questions_db(computadora, [
+preguntas_db(computadora, [
         ['Esta cargada?'], %C1
         ['Esta encendida?'], %C2
         ['Hay alguna respuesta en la pantalla o Touch Bar?'], %C3
@@ -227,7 +224,7 @@ questions_db(computadora, [
         ['Esta vieja?'] %C10
         ]).
 
-questions_db(parlante, [
+preguntas_db(parlante, [
         ['Esta conectado a la corriente?'], %C1
         ['Los servicios de streaming estan activados?'] %C2
         ['El volumen esta alto?'], %C3
@@ -240,7 +237,7 @@ questions_db(parlante, [
         ['Esta viejo?'] %C10
         ]).
 
-questions_db(audifonos, [
+preguntas_db(audifonos, [
         ['Estan cargados?'], %C1
         ['Estan conectados al dispositivo con el audio?'] %C2
         ['Estan bien colocados?'], %C3
@@ -253,7 +250,7 @@ questions_db(audifonos, [
         ['Estan viejos?'] %C10
         ]).
 
-questions_db(pareja, [
+preguntas_db(pareja, [
         ['Lo/la nota triste?'], %C1
         ['Ha notado algun comportamiento de depresion en el/ella?'], %C1
         ['Considera que es alguien toxico para usted?'] %C2
@@ -269,14 +266,14 @@ questions_db(pareja, [
         ['Tiene la cabeza desalineada?'] %C10
         ]).
 
-questions_db(feedback, [
+preguntas_db(feedback, [
         ['Okay. Did you find any of the talks interesting?'],
         ['Hmm. Do you think the open day has been well organised?'],
         ['Ok, thanks. Have the student ambassadors been helpful?'],
         ['So, what are your thoughts on the open day overall?']
         ]).
 
-questions_db(info, [
+preguntas_db(info, [
         [' ¡Genial!¿Cómo puedo ayudarte?'],
         ['¿De dónde eres?'],
         ['¡Un gusto en conocerte!'],
