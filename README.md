@@ -62,5 +62,5 @@ Este proyecto está bajo la Licencia (GNU GENERAL PUBLIC LICENSE) - mira el arch
 
 ***
 <p align="center">
-<img src="https://bit.ly/2lt9Sqt" width="200"/>
+<img src="https://bit.ly/2lt9Sqt" width="125"/>
 </p>
