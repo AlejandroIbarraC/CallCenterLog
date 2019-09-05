@@ -73,6 +73,13 @@ respuestas(gracias, [
         ['Buena!']
         ]).
 
+respuestas(fin_oracion,[
+        ['¡Espero que te sea de mucha ayuda!'],
+        ['¡Suerte con ello!'],
+        ['¿ Te ayudo en algo más?'],
+        [' :)']
+        ]).
+
 respuestas(agradecido, [
         ['Con gusto!'],
         ['Cualquier dia.'],
@@ -201,6 +208,18 @@ respuestas(listo, [
         ['¿Cómo puedo ayudarte?'],
         ['¡Vamos!¿Qué necesitas?'],
         ['¡Bien!, ¿¡Cómo puedo ayudar!?']
+        ]).
+
+% BASE DE DATOS DE CAUSAS
+
+causas_db(impresora, [
+        ['No está conectada a la corriente eléctrica.'],
+        ['No está encendida.'],
+        ['No tiene los drivers instalados.'],
+        ['No está en la misma red WiFi.'],
+        ['No tiene tinta.'],
+        ['No tiene papel.'],
+        ['Los cabezales se encuentran desalineados.']
         ]).
 
 % BASE DE DATOS DE PREGUNTAS.

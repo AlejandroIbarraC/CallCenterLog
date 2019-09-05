@@ -53,15 +53,20 @@ conversacion:-
 
 % A) RESPUESTAS A UNA CONSULTA
 % Si en la misma frase el usuario ya indicó el dispositivo
-generar_respuesta(S,_):-
+generar_respuesta(S,R):-
   patronConsulta(S,_),
   verificar_dispositivo(S),!,
-  display('AK7').
+  resolver_consulta,
+  respuestas(fin_oracion,LR),
+  respuesta_aleatoria(LR,R).
 
 % Si no lo introduce, en la consulta, se procede a preguntarlo
-generar_respuesta(S,_):-
+generar_respuesta(S,R):-
   patronConsulta(S,_),!,
-  obtener_dispositivo.
+  obtener_dispositivo,
+  resolver_consulta,
+  respuestas(fin_oracion,LR),
+  respuesta_aleatoria(LR,R).
 
 % B) RESPUESTAS A UNA REFERENCIA
 % Si en la misma frase el usuario ya indicó el dispositivo
@@ -210,6 +215,21 @@ obtener_dispositivo(_):-
   imprimir_usuario(usuario),readin(D),
   obtener_dispositivo(D).
 
+%----------------------- Q/A FX --------------------------
+
+% resolver_consulta/0
+% Muestra al usuario las causas de un problema con su dispositivo
+resolver_consulta:-
+  imprimir_usuario(bot),
+  write('Las posibles causas de su problema son: \n'),
+  dispositivo(D),nElemento(D,1,Disp),
+  causas_db(Disp,LS),
+  length(LS,N),
+  imprimir_ul(N,LS).
+
+
+
+
 
 %----------------------- AUX FX --------------------------
 % Nota: en un predicado se usa la notación:
@@ -220,9 +240,18 @@ obtener_dispositivo(_):-
 imprimir_usuario(bot):-
     nombre_bot(X), write(X), write(': '), flush_output.
 imprimir_usuario(usuario):-
-    nombre_usuario(X), write(X), write(': '), flush_output.
+    n_usuario(X), write(X), write(': '), flush_output.
 nombre_bot('CallCenterLog').
-nombre_usuario('tu').
+n_usuario('tu').
+
+% imprimir_ul/2
+% Imprime el contenido de una lista como una unsorted list
+imprimir_ul(0,_).
+imprimir_ul(N,L):-
+  nElemento(L, N, R),
+  write('\t* '), imprimir_lista(R),
+  M is N - 1,
+  imprimir_ul(M,L).
 
 % buscar_saludo/1
 % Verifica si la oración es un saludo en la DB
