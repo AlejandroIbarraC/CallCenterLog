@@ -31,7 +31,7 @@ saludar:-
   respuestas(saludo, D),
   respuesta_aleatoria(D, W),
   imprimir_usuario(bot),
-  imprimirLista(W),
+  imprimir_lista(W),
   imprimir_usuario(usuario),
   readin(_).
 
@@ -86,66 +86,65 @@ generar_respuesta(S,_):-
   obtener_dispositivo.
 
 %--------------------------------------------------------
+% buscar despedida "adios"
+generar_respuesta(S, R):-
+  salir(S), !,
+	respuestas(despedida, Res),
+	respuesta_aleatoria(Res, R).
 
 % Buscar frase de saludo
-generarRespuesta(S, R):-
-  buscarSaludo(S), !,
+generar_respuesta(S, R):-
+  buscar_saludo(S), !,
 	respuestas(saludo, Res),
-	respuestaAleatoria(Res, R).
+	respuesta_aleatoria(Res, R).
 
 % Buscar frase de agradecimiento
-generarRespuesta(S, R):-
-  buscarGracias(S), !,
+generar_respuesta(S, R):-
+  buscar_gracias(S), !,
   respuestas(agradecido, Res),
-  respuestaAleatoria(Res, R).
+  respuesta_aleatoria(Res, R).
 
 % Pregunta por el nombre del bot
-generarRespuesta(S, R):-
+generar_respuesta(S, R):-
   patronNombre(S, _), !,
   respuestas(mi_nombre, D),
-  respuestaAleatoria(D, R).
+  respuesta_aleatoria(D, R).
 
 % Preguntando sobre lo que estudio
-generarRespuesta(S, R):-
+generar_respuesta(S, R):-
   patronEstudios(S, _), !,
   respuestas(mi_estudio, D),
-  respuestaAleatoria(D, R).
+  respuesta_aleatoria(D, R).
 
 % Preguntando por el estado del programa
-generarRespuesta(S, R):-
+generar_respuesta(S, R):-
   patronYo(S, _), !,
   respuestas(yo, D),
-  respuestaAleatoria(D, R).
+  respuesta_aleatoria(D, R).
 
 % Detectar pregunta con por qué
-generarRespuesta(S, R):-
+generar_respuesta(S, R):-
 	oracion(_Tree1, S, _Rest), !,
 	pregunta(_Tree2, Rep,[]),
 	append(Rep, ['?'], R).
 
 % Detectar pregunta
-generarRespuesta(S, R):-
+generar_respuesta(S, R):-
 	pregunta(_Tree2, S, _Rest), !,
 	oracion(_Tree1, Rep,[]),
-	append([si, ','|Rep], ['!'], R).
+	append([yes, ','|Rep], ['!'], R).
 
 % Preguntar algo aleatorio
-generarRespuesta(S, R):-
-  \+ buscarPregunta(S), !,
+generar_respuesta(S, R):-
+  \+ buscar_pregunta(S), !,
 	respuestas(preguntas_aleatorias, Res),
-	respuestaAleatoria(Res, R).
+	respuesta_aleatoria(Res, R).
 
 % Responder algo aleatorio
-generarRespuesta(S, R):-
-    buscarPregunta(S), !,
+generar_respuesta(S, R):-
+    buscar_pregunta(S), !,
     respuestas(respuestas_aleatorias, Res),
-    respuestaAleatoria(Res, R).
-
-% buscar despedida "adios"
-generarRespuesta(S, R):-
-  salir(S), !,
-	respuestas(despedida, Res),
-	respuestaAleatoria(Res, R).
+    respuesta_aleatoria(Res, R).
 
 %---------------------------------------------------------
 
@@ -166,7 +165,7 @@ obtener_nombre:-
   preguntas_db(nombre,LP),
   respuesta_aleatoria(LP,R),
   imprimir_usuario(bot),
-  imprimirLista(R),
+  imprimir_lista(R),
   imprimir_usuario(usuario),
   readin(S),
   obtener_nombre(S).
@@ -180,7 +179,7 @@ obtener_nombre(P):-
 obtener_nombre(_):-
   respuestas(obtener_nombre,LR),
   respuesta_aleatoria(LR,RA),
-  imprimir_usuario(bot),imprimirLista(RA),
+  imprimir_usuario(bot),imprimir_lista(RA),
   imprimir_usuario(usuario),readin(S),
   obtener_nombre(S).
 
@@ -190,14 +189,14 @@ ofrecer_ayuda:-
   respuestas(listo,RL),
   respuesta_aleatoria(RL,R),
   imprimir_usuario(bot),
-  imprimirLista(R).
+  imprimir_lista(R).
 
 % obtener_dispositivo/0
 % Le pide al usuario un dispositivo válido.
 obtener_dispositivo:-
   preguntas_db(dispositivo,LP),
   respuesta_aleatoria(LP,P),
-  imprimir_usuario(bot),imprimirLista(P),
+  imprimir_usuario(bot),imprimir_lista(P),
   imprimir_usuario(usuario),readin(S),
   obtener_dispositivo(S).
 
@@ -207,7 +206,7 @@ obtener_dispositivo(D):-
 obtener_dispositivo(_):-
   respuestas(obtener_dispositivo,LR),
   respuesta_aleatoria(LR,RA),
-  imprimir_usuario(bot),imprimirLista(RA),
+  imprimir_usuario(bot),imprimir_lista(RA),
   imprimir_usuario(usuario),readin(D),
   obtener_dispositivo(D).
 
@@ -266,6 +265,18 @@ verificar_dispositivo(S):-
   A \== [],
   assert(dispositivo(A)).
 
-% obtener_info/0
-% Pregunta al usuario
+  % print_report/0
+  % Retorna un resumen de la conversación que se tuvo.
+  print_report:-
+          write('\n--- Resumen de la Conversación ---\n'),
+  	nombre_usuario(X), dispositivo(Z),
+          imprimir_lista(['Usuario: ', X, '\n Dispositivo: ', Z]),
+          retract(nombre_usuario(X)), retract(dispositivo(Z)), fail.
+% print_report:-
+%         nl, feedback(X, Y), write(X), write(' : '), imprimir_lista(Y),
+%         retract(feedback(X, Y)), fail.
+% print_report:-
+%         nl, information(X, Y), write(X), write(' : '), imprimir_lista(Y),
+%         retract(information(X, Y)), fail.
+  print_report.
 %------------------ FIN DEL CODIGO ----------------------
