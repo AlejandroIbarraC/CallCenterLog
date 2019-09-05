@@ -9,7 +9,7 @@
  * -------------------------------------------------------*/
 
  % Modulos y archivos
- :- [db, patrones, readin, english, nombres, util].
+ :- [db, patrones, readin, idioma, nombres, util].
  :- use_module(library(random)).
 
  % Variables que almacenan la información del Usuario
