@@ -3,7 +3,7 @@
 %
 % Descripción:  Busca patrones especiales en la comunicación con el usuario.
 
-% patronEstudios/2 (Nivel 2)
+% patronEstudios/2
 % Busca patrones que pregunten por el estudio del programa.
 patronEstudios([que, estas, estudiando, X |_], X):-!.
 patronEstudios([que, estudias, X |_], X):-!.
@@ -12,7 +12,7 @@ patronEstudios([what, is, your, degree, X |_], X):-!.
 patronEstudios([_|T], X):-
     patronEstudios(T, X).
 
-% patronNombre/2 (Nivel 2)
+% patronNombre/2
 % Busca patrones que pregunten por el nombre del programa.
 patronNombre([cual, es, tu, nombre, X |_], X):-!.
 patronNombre([tu, nombre, X |_], X):-!.
@@ -26,7 +26,7 @@ patronNombre([quien, tu, eres, X |_], X):-!.
 patronNombre([_|T], X):-
     patronNombre(T, X).
 
-% patronYo/2 (Nivel 2)
+% patronYo/2
 % Busca patrones que pregunten estado emocional del programa.
 patronYo([como, estas, X |_], X):-!.
 patronYo([estas, bien, X |_], X):-!.
@@ -39,7 +39,47 @@ patronYo([como, te, sientes, X |_], X):-!.
 patronYo([_|T], X):-
     patronYo(T, X).
 
-% patronProblema/2 (Nivel 2)
+% patronConsulta/2
+% Busca patrones que indican que el usuario está realizando
+% una consulta.
+
+% Consulta
+patronConsulta([tengo, una, consulta, X|_],X):-!.
+patronConsulta([necesito, consultar, X|_],X):-!.
+patronConsulta([realizar, una, consulta, X|_],X):-!.
+patronConsulta([hacer, una, consulta, X|_],X):-!.
+patronConsulta([necesito, conocer, X|_],X):-!.
+patronConsulta([consulta, X|_],X):-!.
+patronConsulta([consultar, X|_],X):-!.
+
+% Causas
+patronConsulta([cuales, son, las, causas, X|_],X):-!.
+patronConsulta([quiero, saber, las, causas, X|_],X):-!.
+patronConsulta([cual, es, la, causa, X|_],X):-!.
+patronConsulta([causas, X|_],X):-!.
+patronConsulta([causa, X|_],X):-!.
+
+patronConsulta([_|T],X):-
+  patronConsulta(T,X).
+
+% patronReferencia/2
+% Busca patrones que indican que el usuario está solicitando
+% una Referencia.
+
+% Referencia
+patronReferencia([tienes, una, referencia, X|_],X):-!.
+patronReferencia([tendras, referencias, X|_],X):-!.
+patronReferencia([puedo, conseguir, informacion, X|_],X):-!.
+patronReferencia([tienes, informacion, acerca, de, X|_],X):-!.
+patronReferencia([necesito, conocer, X|_],X):-!.
+patronReferencia([tienes, alguna, referencia, X|_],X):-!.
+patronReferencia([referencia, X|_],X):-!.
+patronReferencia([referencias, X|_],X):-!.
+
+patronReferencia([_|T],X):-
+  patronReferencia(T,X).
+
+% patronProblema/2
 % Busca patrones que indican un problema del usuario.
 
 %~ problema
@@ -65,7 +105,7 @@ patronProblema([esta, malo, X |_], X):-!.
 patronProblema([_|T], X):-
   patronProblema(T, X).
 
-% patronCausa/2 (Nivel 2)
+% patronCausa/2
 % para que estos patrones funcionen, se necesita un punto al final
 % Busca patrones en las causas de un problemas
 

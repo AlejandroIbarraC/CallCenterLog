@@ -43,7 +43,7 @@ respuestas(obtener_nombre, [
         ['Ese no es tu nombre real...'],
         ['Ese no puede ser tu nombre.'],
         ['Solo dime tu nombre...'],
-        ['Necesito saber tu nomnbre!'],
+        ['Necesito saber tu nombre!'],
         ['Vamos, como te llamas?']
         ]).
 
@@ -195,13 +195,22 @@ respuestas(pareja, [
         ['Hay que alinearle la cabeza con un martillo astral de otra dimension.'] %S10
         ]).
 
-respuestas(problema, [
-        ['Ohh! ¿Con qué dispositivo tienes problemas?'],
-        ['Dime el dispositivo'],
-        ['¿Cuál dispositivo te está dando problemas?']]).
+
+respuestas(listo, [
+        ['¡Excelente! ¡Dime en qué te puedo ayudar!'],
+        ['¿Cómo puedo ayudarte?'],
+        ['¡Vamos!¿Qué necesitas?'],
+        ['¡Bien!, ¿¡Cómo puedo ayudar!?']
+        ]).
 
 % BASE DE DATOS DE PREGUNTAS.
 % LAS CAUSAS DE PROBLEMAS SE NUMERAN CON C + NÚMERO DE CAUSA DE LA TABLA CSR.
+
+preguntas_db(dispositivo, [
+        ['Ohh! ¿Con qué dispositivo tienes problemas?'],
+        ['Dime el dispositivo'],
+        ['¿Cuál dispositivo te está dando problemas?']
+        ]).
 
 preguntas_db(impresora, [
         ['Esta conectada a la corriente?'], %C1
@@ -282,9 +291,13 @@ preguntas_db(feedback, [
 ['So, what are your thoughts on the open day overall?']
 */
 
-preguntas_db(info, [
-        [' ¡Genial!¿Cómo puedo ayudarte?'],
-        ['¿Como te llamas?']
+preguntas_db(nombre, [
+        [' ¡Genial!¿Cómo te llamas?'],
+        ['¿Como te llamas?'],
+        ['Ya que estamos...¿Cuál es tu nombre?'],
+        ['¿Qué? ¿Cómo te dicen?'],
+        ['¿Cómo puedo llamarte?'],
+        ['¿Cuál es tu nombre?']
         ]).
 
 % BASE DE DATOS DE REFERENCIAS

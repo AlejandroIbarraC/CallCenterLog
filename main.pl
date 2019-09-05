@@ -56,72 +56,105 @@ buscarSaludo(S):-
 
 % generarRespuesta/2 (Nivel 2)
 % Genera una respuesta dependiendo de lo que el usuario escriba.
-generarRespuesta(S, R):- % buscar despedida "adios"
-    salir(S), !,
+
+% buscar despedida "adios"
+generarRespuesta(S, R):-
+  salir(S), !,
 	respuestas(despedida, Res),
 	respuestaAleatoria(Res, R).
-generarRespuesta(S, R):- % buscar frase de saludo
-    buscarSaludo(S), !,
+
+% buscar frase de saludo
+generarRespuesta(S, R):-
+  buscarSaludo(S), !,
 	respuestas(saludo, Res),
 	respuestaAleatoria(Res, R).
-generarRespuesta(S, R):- % buscar frase de agradecimiento
-    buscarGracias(S), !,
-    respuestas(agradecido, Res),
-    respuestaAleatoria(Res, R).
-generarRespuesta(S, R):- % asking my name? (grammar)
-    question(Tree2, S, _Rest),
-    mapping(s2name,Tree1, Tree2), !,
-    sentence(Tree1, Rep,[]),
-    append(Rep, ['!'], R).
-generarRespuesta(S, R):- % buscar pregunta de mi nombre
+
+% buscar frase de agradecimiento
+generarRespuesta(S, R):-
+  buscarGracias(S), !,
+  respuestas(agradecido, Res),
+  respuestaAleatoria(Res, R).
+
+% buscar pregunta de mi nombre
+generarRespuesta(S, R):-
     patronNombre(S, _), !, % Si lo que busca lo encuentra en un patrón, le brinda una respuesta [cut]
     respuestas(mi_nombre, D),
     respuestaAleatoria(D, R).
-generarRespuesta(S, R):- % preguntando sobre lo que estudio
+
+% preguntando sobre lo que estudio
+generarRespuesta(S, R):-
     patronEstudios(S, _), !,
     respuestas(mi_estudio, D),
     respuestaAleatoria(D, R).
 
-% El usuario dice que tiene un problema.
+% preguntando al usuario sobre su dispositivo
+generarRespuesta(S, _R):-
+    patronProblema(S, _) !,
+		respuestas(problema, D),
+		respuestaAleatoria(D,W),
+		imprimirUsuario(yo),
+		imprimirLista(W),
+		obtenerDispositivo.
+
+
+% El usuario dice que tiene un problema con la impresora.
 generarRespuesta(S,R):-
-	patronProblema(S,_),!,
-	respuestas(solucion, D),
-	respuestaAleatoria(D,R).
-generarRespuesta(S, R):- % asking how I am? (grammar)
-    question(Tree2, S, _Rest), !,
-    mapping(s2how,Tree1, Tree2),
-    sentence(Tree1, Rep,[]), !,
-    append(Rep, ['!'], R).
+	patronCausa(impresora,S,_,NS),!,
+	respuestas(impresora, D),
+	nElemento(D,NS,R).
+
+% El usuario dice que tiene un problema con la computadora.
+generarRespuesta(S,R):-
+	patronCausa(computadora,S,_,NS),!,
+	respuestas(conputadora, D),
+	nElemento(D,NS,R).
+
+% El usuario dice que tiene un problema con el parlante.
+generarRespuesta(S,R):-
+	patronCausa(parlante,S,_,NS),!,
+	respuestas(parlante, D),
+	nElemento(D,NS,R).
+
+% El usuario dice que tiene un problema con los audifonos.
+generarRespuesta(S,R):-
+	patronCausa(audifonos,S,_,NS),!,
+	respuestas(audifonos, D),
+	nElemento(D,NS,R).
+
 generarRespuesta(S, R):- % preguntando por el estado del programa
     patronYo(S, _), !,
     respuestas(me, D),
     respuestaAleatoria(D, R).
+
 generarRespuesta(S, R):- % detectar pregunta con por qué
-	sentence(Tree1, S, _Rest), !,
-	mapping(s2why,Tree1, Tree2),
-	question(Tree2, Rep,[]),
+	oracion(_Tree1, S, _Rest), !,
+	pregunta(_Tree2, Rep,[]),
 	append(Rep, ['?'], R).
+
 generarRespuesta(S, R):- % detectar pregunta
-	question(Tree2, S, _Rest), !,
-	mapping(s2q,Tree1, Tree2),
-	sentence(Tree1, Rep,[]),
+	pregunta(_Tree2, S, _Rest), !,
+	oracion(_Tree1, Rep,[]),
 	append([yes, ','|Rep], ['!'], R).
+
 generarRespuesta(S, R):- % obtener informacion de usuario
     \+ buscarPregunta(S),
     \+ information(_, _), !,
-    obtenerInformacion(4),
-    respuestas(gracias, D),
-    respuestaAleatoria(D, R).
+    obtenerInformacion(2),
+		respuestas(gracias, D),
+		respuestaAleatoria(D,R).
+
 generarRespuesta(S, R):- % get feedback
     \+ buscarPregunta(S),
     \+ feedback(_, _), !,
     get_feedback(4),
     respuestas(gracias, D),
     respuestaAleatoria(D, R).
+
 generarRespuesta(S, R):- % preguntar algo aleatorio
     \+ buscarPregunta(S), !,
 	respuestas(preguntas_aleatorias, Res),
 	respuestaAleatoria(Res, R).
+
 generarRespuesta(S, R):- % responder algo aleatorio
     buscarPregunta(S), !,
     respuestas(respuestas_aleatorias, Res),
@@ -131,9 +164,9 @@ generarRespuesta(S, R):- % responder algo aleatorio
 %
 % Asks the user for a number (N) of pieces of feedback,
 % and asserts the responses into the database.
-get_feedback(0).
+get_feedback(1).
 get_feedback(N):-
-    questions_db(feedback, D),
+    preguntas_db(feedback, D),
     nElemento(D, N, R),
     imprimirUsuario(yo),
     imprimirLista(R),
@@ -170,7 +203,7 @@ obtenerDispositivo(_):-
 % Pregunta al usuario por informacion y lo introduce en la base de datos
 obtenerInformacion(0).
 obtenerInformacion(N):-
-    questions_db(info, D),
+    preguntas_db(info, D),
     nElemento(D, N, Q),
     imprimirUsuario(yo),
     imprimirLista(Q),
@@ -180,18 +213,22 @@ obtenerInformacion(N):-
     obtenerInformacion(Q, R),
     M is N - 1,
     obtenerInformacion(M).
+
 obtenerInformacion(QL, RL):-
     nElemento(QL, 1, Q),
     contiene(Q, nombre), !,
     obtenerNombre(Q, RL).
+
 obtenerInformacion(QL, RL):-
     nElemento(QL, 1, Q),
     contiene(Q, subjects), !,
     obtenerDispositivo(RL).
+
 obtenerInformacion(QL, RL):-
     nElemento(QL, 1, Q),
     contiene(Q, from), !,
     assert(usr_location(RL)).
+
 obtenerInformacion(_, _).
 
 % obtenerNombre/2 (Nivel 2)
@@ -200,8 +237,10 @@ obtenerNombre(Q):-
     imprimirUsuario(usted),
     readin(S),
     obtenerNombre(Q, S).
+
 obtenerNombre(_, RL):-
     verificarNombre(RL), !.
+
 obtenerNombre(Q, _):-
     respuestas(obtener_nombre, D),
     respuestaAleatoria(D, X),
@@ -234,17 +273,19 @@ saludar:-
 % verificarDispositivo/1 (Nivel 1)
 % Verifica si el dispositivo es valido, y lo agrega a la base de datos actual.
 verificarDispositivo(S):-
-    dispositivo(D),
+    dispositivos(D),
     interseca(S, D, A),
     A \== [],
     assert(dispositivo(A)).
 
 % verificarNombre/1 (Nivel 1)
 % Verifica si la entrada contiene un nombre válido
-verificarNombre(NL):-
-    nElemento(NL, 1, N),
-    nombre(N),
-    assert(nombre_usuario(N)).
+verificarNombre([N|_]):-
+	nombre(N),!,
+	assert(nombre_usuario(N)).
+
+verificarNombre([_|R]):-
+ 	verificarNombre(R).
 
 % print_report/0
 % Outputs a conversation summary based on facts gathered
