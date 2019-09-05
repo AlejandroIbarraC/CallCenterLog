@@ -106,14 +106,35 @@ generar_respuesta(S,R):-
   respuesta_aleatoria(LR,R).
 
 % C) RESPUESTAS A UN PROBLEMA
-generar_respuesta(S,_):-
-  patronProblema(S,_),
-  verificar_dispositivo(S),!,
-  display('AK7').
 
-generar_respuesta(S,_):-
-  patronProblema(S,_),!,
-  obtener_dispositivo.
+% El usuario indica que tiene un problema, el dispositivo y dice cual
+% es la causa (sea específica o general).
+generar_respuesta(S,R):-
+  patronProblema(S,_), verificar_dispositivo(S),
+  es_causa(S,N),!,
+  brindar_solucion(N,R).
+
+generar_respuesta(S,R):-
+  patronProblema(S,_), verificar_dispositivo(S),
+  es_caso_especial(S,N),!,
+  brindar_solucion(N),
+  respuestas(fin_oracion,LR),
+  respuesta_aleatoria(LR,R).
+
+% El usuario indica que tiene un problema y el dispositivo.
+generar_respuesta(S,R):-
+  patronProblema(S,_), verificar_dispositivo(S),!,
+  conoce_el_problema,
+  respuestas(fin_oracion,LR),
+  respuesta_aleatoria(LR,R).
+
+% El usuario solo indica que tiene un problema.
+generar_respuesta(S,R):-
+  patronProblema(S,_), !,
+  obtener_dispositivo,
+  conoce_el_problema,
+  respuestas(fin_oracion,LR),
+  respuesta_aleatoria(LR,R).
 
 %--------------------------------------------------------
 % buscar despedida "adios"
@@ -240,6 +261,41 @@ obtener_dispositivo(_):-
   imprimir_usuario(usuario),readin(D),
   obtener_dispositivo(D).
 
+% conoce_el_problema/0
+% Realiza preguntas al usuario para determinar si conoce el problema
+conoce_el_problema:-
+  imprimir_usuario(bot),write('Responde a la siguiente pregunta con SI o NO\n'),
+  write('¿Conoces cual es tu problema?'),
+  readin(S),
+  conoce_el_problema(S),!.
+
+% Si Sí conoce el problema, solicita la causa y luego lo soluciona
+conoce_el_problema(S):-
+  afirmativo(S), !,
+  imprimir_usuario(bot),
+  write('¡Sí lo sabes! ¡Entonces dime cuál es!\n'),
+  imprimir_usuario(usuario),readin(P),
+  verificar_problema(P).
+
+% Si no lo conoce, se procede a realizar obtener_problema
+conoce_el_problema(S):-
+  negativo(S), !,
+  imprimir_usuario(bot),
+  write('¡No lo sabes! Bueno, vamos a encontrarlo!\n'),
+  obtener_problema.
+
+% Clausa de salida del bucle de detección de problemas
+conoce_el_problema(S):-
+  member('salir',S), !.
+
+% Si el usuario no ingresa si o no, le pide que ingrese una
+conoce_el_problema(_):-
+  imprimir_usuario(bot),
+  write('No respondiste con SI o NO, intentalo de nuevo'),
+  readin(S), conoce_el_problema(S).
+
+% obtener_problema/0
+
 %----------------------- Q/A FX --------------------------
 
 % resolver_consulta/0
@@ -274,6 +330,21 @@ brindar_referencia(N):-
   referencias(Disp,LRF),
   imprimir_seleccion(LRF,N),!.
 
+% brindar_solucion/2
+% Brinda una o varias referencias asociadas a un problema.
+brindar_solucion(N,S):-
+  integer(N),!,
+  dispositivo(D),nElemento(D,1,Disp),
+  respuestas(Disp,LRF),
+  nElemento(LRF,N,S).
+
+% brindar_solucion/1
+brindar_solucion(N):-
+  imprimir_usuario(bot),write('\n'),
+  dispositivo(D),nElemento(D,1,Disp),
+  respuestas(Disp,LRF),
+  imprimir_seleccion(LRF,N),!.
+
 %----------------------- AUX FX --------------------------
 % Nota: en un predicado se usa la notación:
 % nombre/(numero de args)
@@ -306,6 +377,16 @@ buscar_gracias(S):-
   interseca(S, D, A),
   A \== [].
 
+% afirmativo/1
+% Retorna verdadero si el usuario responde SI
+afirmativo(S):-
+  member('si',S).
+
+% afirmativo/1
+% Retorna verdadero si el usuario responde SI
+negativo(S):-
+  member('no',S).
+
 % salir/1
 % Verifica si la entrada contiene la frase de despedida
 salir(S):-
@@ -327,6 +408,23 @@ verificar_dispositivo(S):-
   interseca(S, D, A),
   A \== [],
   assert(dispositivo(A)).
+
+% verificar_problema/1
+% Verifica que el usuario este ingresando un problema.
+verificar_problema(S):-
+  es_causa(S,N),!,
+  brindar_solucion(N,R),
+  imprimir_lista(R).
+
+verificar_problema(S):-
+  es_caso_especial(S,N),!,
+  brindar_solucion(N).
+
+verificar_problema(_):-
+  respuestas(problema,LP),
+  respuesta_aleatoria(LP,RA),
+  imprimir_usuario(bot),
+  imprimir_lista(RA),fail.
 
 % es_causa/2
 % Indica si en una oración se da una causa principal

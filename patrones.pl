@@ -86,6 +86,7 @@ patronReferencia([_|T],X):-
 patronProblema([tengo, un, problema, X |_], X):- !.
 patronProblema([presenta, un, problema, X |_], X):-!.
 patronProblema([tiene, un, problema, X |_], X):-!.
+patronProblema([problema, X |_], X):-!.
 
 %~ funciona
 patronProblema([no, funciona, X |_], X):-!.
@@ -95,6 +96,7 @@ patronProblema([funciona, mal, X |_], X):- !.
 
 %~ daños
 patronProblema([esta, dañado, X|_], X):- !.
+patronProblema([esta, dañada, X|_], X):- !.
 patronProblema([se,daño, X|_], X):-!.
 patronProblema([un,daño, X|_], X):-!.
 
@@ -114,6 +116,13 @@ patronProbRef(impresora,[no, salen, las, impresiones, X|_],X, [6]):- !.
 patronProbRef(impresora,[la, impresion, esta, borrosa, X|_],X,[6,8,9]):- !.
 patronProbRef(impresora,[la, impresion, sale, sucia, X|_],X, [8,9]):- !.
 
+% Problema-Referencia de computadora
+
+
+% Problema-Referencia de parlante
+
+
+% Problema-Referencia de audifonos
 
 patronProbRef(D,[_|T],X,N):-
   patronProbRef(D,T,X,N).
@@ -126,14 +135,14 @@ patronProbRef(D,[_|T],X,N):-
 patronCausa(impresora,[no, esta, conectada, X |_], X, NS):- !, NS is 1.
 patronCausa(impresora,[no, esta, encendida, X |_], X, NS):- !, NS is 2.
 patronCausa(impresora,[no, enciende, X |_], X, NS):- !, NS is 2.
-patronCausa(impresora, [no, responde, X |_], X, NS):- !, NS is 3.
+patronCausa(impresora,[no, responde, X |_], X, NS):- !, NS is 3.
 patronCausa(impresora,[no, tiene, drivers, X |_], X, NS):- !, NS is 4.
-patronCausa(impresora, [no, esta, en, la, misma, red, wifi, X |_], X, NS):- !, NS is 5.
+patronCausa(impresora,[no, esta, en, la, misma, red, wifi, X |_], X, NS):- !, NS is 5.
 patronCausa(impresora,[no, tiene, tinta, X |_], X, NS):- !, NS is 6.
 patronCausa(impresora,[no, tiene, papel, X |_], X, NS):- !, NS is 7.
 patronCausa(impresora,[cabezales, desalineados, X|_], X, NS):- !, NS is 8.
-patronCausa(impresora, [esta, sucia, X |_], X, NS):- !, NS is 9.
-patronCausa(impresora, [esta, vieja, X |_], X, NS):- !, NS is 10.
+patronCausa(impresora,[esta, sucia, X |_], X, NS):- !, NS is 9.
+patronCausa(impresora,[esta, vieja, X |_], X, NS):- !, NS is 10.
 
 % Causas computadora
 patronCausa(computadora, [esta, descargada, X |_], X, NS):-! ,NS is 1.
@@ -169,8 +178,8 @@ patronCausa(audifonos, [estan, desactualizados, X |_], X, NS):- !, NS is 5.
 patronCausa(audifonos, [no, se, conectan, X |_], X, NS):- !, NS is 6.
 patronCausa(audifonos, [volumen, bajo, X |_], X, NS):-!, NS is 7.
 patronCausa(audifonos, [pausados, X |_], X, NS):- !, NS is 8.
-patronCausa(audifonos,  [estan, sucios, X |_], X, NS):- !, NS is 9.
-patronCausa(audifonos,  [estan, viejos, X |_], X, NS):- !, NS is 10.
+patronCausa(audifonos, [estan, sucios, X |_], X, NS):- !, NS is 9.
+patronCausa(audifonos, [estan, viejos, X |_], X, NS):- !, NS is 10.
 
 % patronCausa( Dispositivo, Lista, Comparador, Número de Solución).
 patronCausa(D, [_|T], X, NS):-

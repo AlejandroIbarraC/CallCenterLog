@@ -210,6 +210,14 @@ respuestas(listo, [
         ['¡Bien!, ¿¡Cómo puedo ayudar!?']
         ]).
 
+respuestas(problema, [
+        ['Lo siento no tengo la solución a ese problema. ¡Intentalo de nuevo!'],
+        ['¿Seguro que ese es tu problema?'],
+        ['Necesito que me digas bien tu problema'],
+        ['Lo siento, mis creadores no me han entrenado para ese tipo de problemas.\n Pero espero tener la solución lista para mi próxima versión!'],
+        ['Ni idea...']
+        ]).
+
 % BASE DE DATOS DE CAUSAS
 
 causas_db(impresora, [
