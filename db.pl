@@ -65,7 +65,7 @@ respuestas(mi_estudio, [
 
 respuestas(gracias, [
         ['Gracias por la informacion!'],
-        ['Gracias. Me ayuda mucho.'],
+        ['¡Gracias por la información!. Me ayuda mucho.'],
         ['Okay, muchas gracias.'],
         ['Gracias por eso.'],
         ['Muy buena esa.'],
@@ -195,6 +195,11 @@ respuestas(pareja, [
         ['Hay que alinearle la cabeza con un martillo astral de otra dimension.'] %S10
         ]).
 
+respuestas(problema, [
+        ['Ohh! ¿Con qué dispositivo tienes problemas?'],
+        ['Dime el dispositivo'],
+        ['¿Cuál dispositivo te está dando problemas?']]).
+
 % BASE DE DATOS DE PREGUNTAS.
 % LAS CAUSAS DE PROBLEMAS SE NUMERAN CON C + NÚMERO DE CAUSA DE LA TABLA CSR.
 
@@ -267,16 +272,18 @@ preguntas_db(pareja, [
         ]).
 
 preguntas_db(feedback, [
-        ['Okay. Did you find any of the talks interesting?'],
-        ['Hmm. Do you think the open day has been well organised?'],
-        ['Ok, thanks. Have the student ambassadors been helpful?'],
-        ['So, what are your thoughts on the open day overall?']
+        ['El feedback']
         ]).
+
+/*
+['Okay. Did you find any of the talks interesting?'],
+['Hmm. Do you think the open day has been well organised?'],
+['Ok, thanks. Have the student ambassadors been helpful?'],
+['So, what are your thoughts on the open day overall?']
+*/
 
 preguntas_db(info, [
         [' ¡Genial!¿Cómo puedo ayudarte?'],
-        ['¿De dónde eres?'],
-        ['¡Un gusto en conocerte!'],
         ['¿Como te llamas?']
         ]).
 
@@ -365,7 +372,8 @@ gracias([
         muchasgracias
         ]).
 
-dispositivos([impresora,
+dispositivos([
+        impresora,
         computadora,
         parlante,
         audifonos,

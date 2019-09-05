@@ -66,6 +66,7 @@ patronProblema([_|T], X):-
   patronProblema(T, X).
 
 % patronCausa/2 (Nivel 2)
+% para que estos patrones funcionen, se necesita un punto al final
 % Busca patrones en las causas de un problemas
 
 % Causas impresora

@@ -4,8 +4,7 @@ oracion(o(X, Y, Z)) --> pregunta(X), pronombre_indirecto(Y), verbo(Z).
 
 oracion(o(X, Y)) --> pregunta(X), adverbio(Y).
 
-oracion(o(X, Y, Z)) --> pregunta(X), determinativos(Y), nombre_lugar(Z).
-
+oracion(o(X, Y)) --> pregunta(X), determinativos(Y).
 oracion(o(X, Y)) --> verbo(X), adjetivo(Y).
 
 oracion(o(X, Y, Z, W)) --> determinativos(X), sustantivo(Y), verbo(Z), adjetivo(W).
@@ -49,19 +48,6 @@ preposicion(prep(bajo)) --> [bajo].
 preposicion(prep(hacia)) --> [hacia].
 preposicion(prep(para)) --> [para].
 preposicion(prep(por)) --> [por].
-
-
-
-
-
-nombre_lugar(nlugar(la, casa)) --> [casa].
-nombre_lugar(nlugar(el, hogar)) --> [hogar].
-nombre_lugar(nlugar(la, tienda)) --> [tienda].
-nombre_lugar(nlugar(el, local)) --> [local].
-nombre_lugar(nlugar(la, empresa)) --> [empresa].
-nombre_lugar(nlugar(la, compania)) --> [compania].
-nombre_lugar(nlugar(el, apartamento)) --> [apartamento].
-nombre_lugar(nlugar(el, departamento)) --> [departamento].
 
 
 pronombre_personal(pp(yo)) --> [yo].
