@@ -219,7 +219,41 @@ causas_db(impresora, [
         ['No está en la misma red WiFi.'],
         ['No tiene tinta.'],
         ['No tiene papel.'],
-        ['Los cabezales se encuentran desalineados.']
+        ['Los cabezales se encuentran desalineados.'],
+        ['Esta sucia']
+        ]).
+
+causas_db(computadora, [
+        ['Se encuentra descargada.'],
+        ['No está encendida.'],
+        ['No está actualizada.'],
+        ['No está conectada al WiFi.'],
+        ['Está desconectada de sus datos.'],
+        ['Está llena y por eso no responde.'],
+        ['Está sucia.'],
+        ['Está vieja']
+        ]).
+
+causas_db(parlante, [
+        ['No está conectado.'],
+        ['Los servicios de streaming no están conectados.'],
+        ['Tiene el voluen bajo.'],
+        ['Está pausado.'],
+        ['No está conectado a la red.'],
+        ['NO está concetado a la misma red WiFi.'],
+        ['El Sistema no está soportado.'],
+        ['Alexa está desconectada']
+        ]).
+
+causas_db(audifonos, [
+        ['Se encuentra descargada.'],
+        ['No está encendida.'],
+        ['No está actualizada.'],
+        ['No está conectada al WiFi.'],
+        ['Está desconectada de sus datos.'],
+        ['Está llena y por eso no responde.'],
+        ['Está sucia.'],
+        ['Está vieja']
         ]).
 
 % BASE DE DATOS DE PREGUNTAS.

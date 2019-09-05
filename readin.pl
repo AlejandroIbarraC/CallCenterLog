@@ -35,8 +35,8 @@ initread([K1,K2|U]):-get_code(K1),get_code(K2),readrest(K2,U).
 
 % Función recursiva que se encarga de leer el resto de la oración.
 readrest(46,[]):-!.  % 46 ascii -> '.'
-readrest(63,[]):-!.  % 63 ascii -> '?'
-readrest(33,[]):-!.  % 33 ascii -> '!'
+% readrest(63,[]):-!.  % 63 ascii -> '?'
+% readrest(33,[]):-!.  % 33 ascii -> '!'
 readrest(10,[]):-!.  % 10 ascii -> '\n'
 
 % Si el caracter es menor a 32 es un caracter "no imprimible"

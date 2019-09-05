@@ -105,7 +105,20 @@ patronProblema([esta, malo, X |_], X):-!.
 patronProblema([_|T], X):-
   patronProblema(T, X).
 
-% patronCausa/2
+%patronProbRef/4
+
+% Problema-Referencia de impresora
+patronProbRef(impresora,[no, imprime, X|_],X, [2,6,7]):- !.
+patronProbRef(impresora,[no, enciende, X|_],X, [1,2]):- !.
+patronProbRef(impresora,[no, salen, las, impresiones, X|_],X, [6]):- !.
+patronProbRef(impresora,[la, impresion, esta, borrosa, X|_],X,[6,8,9]):- !.
+patronProbRef(impresora,[la, impresion, sale, sucia, X|_],X, [8,9]):- !.
+
+
+patronProbRef(D,[_|T],X,N):-
+  patronProbRef(D,T,X,N).
+
+% patronCausa/4
 % para que estos patrones funcionen, se necesita un punto al final
 % Busca patrones en las causas de un problemas
 

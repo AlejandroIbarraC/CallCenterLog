@@ -69,16 +69,41 @@ generar_respuesta(S,R):-
   respuesta_aleatoria(LR,R).
 
 % B) RESPUESTAS A UNA REFERENCIA
-% Si en la misma frase el usuario ya indicó el dispositivo
-generar_respuesta(S,_):-
+
+% Si en la misma frase el usuario ya indicó el dispositivo y el problema
+generar_respuesta(S,R):-
+  patronReferencia(S,_), verificar_dispositivo(S),
+  es_causa(S,N),!,
+  imprimir_usuario(bot),write('Esta referencia puede serte útil: '),
+  brindar_referencia(N),
+  respuestas(fin_oracion,LR),
+  respuesta_aleatoria(LR,R).
+
+% Si en la misma frase el usuario ya indicó el dispositivo y el problema
+generar_respuesta(S,R):-
+  patronReferencia(S,_),
+  verificar_dispositivo(S),
+  es_caso_especial(S,N),!,
+  imprimir_usuario(bot),write('Estas referencias te ayudarán: \n'),
+  brindar_referencia(N),
+  respuestas(fin_oracion,LR),
+  respuesta_aleatoria(LR,R).
+
+% Si el usuario solo brinda el dispositivo
+generar_respuesta(S,R):-
   patronReferencia(S,_),
   verificar_dispositivo(S),!,
-  display('AK7').
+  brindar_referencias,
+  respuestas(fin_oracion,LR),
+  respuesta_aleatoria(LR,R).
 
-% Si no lo introduce, en la consulta, se procede a preguntarlo
-generar_respuesta(S,_):-
+% Si no dice ni dispositivo, ni problema se brindan todas.
+generar_respuesta(S,R):-
   patronReferencia(S,_),!,
-  obtener_dispositivo.
+  obtener_dispositivo,
+  brindar_referencias,
+  respuestas(fin_oracion,LR),
+  respuesta_aleatoria(LR,R).
 
 % C) RESPUESTAS A UN PROBLEMA
 generar_respuesta(S,_):-
@@ -225,11 +250,29 @@ resolver_consulta:-
   dispositivo(D),nElemento(D,1,Disp),
   causas_db(Disp,LS),
   length(LS,N),
-  imprimir_ul(N,LS).
+  imprimir_ul(N,LS),!.
 
+% brindar_referencias/0
+% Brinda al usuario todas las referencias de un dispositivo.
+brindar_referencias:-
+  imprimir_usuario(bot),write('Esta referencias pueden ayudarte con tu problema: \n'),
+  dispositivo(D),nElemento(D,1,Disp),
+  referencias(Disp,LR),
+  length(LR,N),imprimir_ul(N,LR),!.
 
+% brindar_referencia/1
+% Brinda una o varias referencias asociadas a un problema.
+brindar_referencia(N):-
+  integer(N),!,
+  dispositivo(D),nElemento(D,1,Disp),
+  referencias(Disp,LRF),
+  nElemento(LRF,N,RF),
+  imprimir_lista(RF).
 
-
+brindar_referencia(N):-
+  dispositivo(D),nElemento(D,1,Disp),
+  referencias(Disp,LRF),
+  imprimir_seleccion(LRF,N),!.
 
 %----------------------- AUX FX --------------------------
 % Nota: en un predicado se usa la notación:
@@ -243,15 +286,6 @@ imprimir_usuario(usuario):-
     n_usuario(X), write(X), write(': '), flush_output.
 nombre_bot('CallCenterLog').
 n_usuario('tu').
-
-% imprimir_ul/2
-% Imprime el contenido de una lista como una unsorted list
-imprimir_ul(0,_).
-imprimir_ul(N,L):-
-  nElemento(L, N, R),
-  write('\t* '), imprimir_lista(R),
-  M is N - 1,
-  imprimir_ul(M,L).
 
 % buscar_saludo/1
 % Verifica si la oración es un saludo en la DB
@@ -294,13 +328,26 @@ verificar_dispositivo(S):-
   A \== [],
   assert(dispositivo(A)).
 
-  % print_report/0
-  % Retorna un resumen de la conversación que se tuvo.
-  print_report:-
-          write('\n--- Resumen de la Conversación ---\n'),
-  	nombre_usuario(X), dispositivo(Z),
-          imprimir_lista(['Usuario: ', X, '\n Dispositivo: ', Z]),
-          retract(nombre_usuario(X)), retract(dispositivo(Z)), fail.
+% es_causa/2
+% Indica si en una oración se da una causa principal
+es_causa(S,N):-
+  dispositivo(D),nElemento(D,1,Disp),
+  patronCausa(Disp,S,_,N).
+
+% es_caso_especial/?
+% Indica si se hace request de un problema específico
+es_caso_especial(S,N):-
+  dispositivo(D),nElemento(D,1,Disp),
+  patronProbRef(Disp,S,_,N).
+
+% print_report/0
+% Retorna un resumen de la conversación que se tuvo.
+print_report:-
+  write('\n--- Resumen de la Conversación ---\n'),
+	nombre_usuario(X), dispositivo(Z),
+  imprimir_lista(['Usuario: ', X, '\nDispositivo: ', Z]),
+  retract(nombre_usuario(X)),retract(dispositivo(Z)),fail.
+
 % print_report:-
 %         nl, feedback(X, Y), write(X), write(' : '), imprimir_lista(Y),
 %         retract(feedback(X, Y)), fail.
