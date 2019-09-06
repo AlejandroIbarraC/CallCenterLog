@@ -295,6 +295,40 @@ conoce_el_problema(_):-
   readin(S), conoce_el_problema(S).
 
 % obtener_problema/0
+obtener_problema:-
+  imprimir_usuario(bot),
+  write('Responde a las siguientes preguntas con SI o NO\n'),
+  dispositivo(D),nElemento(D,1,Disp),
+  preguntas_db(Disp,PP),
+  length(PP,N),obtener_problema(N).
+
+% obtener_problema/1
+obtener_problema(N):-
+  integer(N),!,
+  dispositivo(D),nElemento(D,1,Disp),
+  preguntas_db(Disp,PP),
+  nElemento(PP,N,PG),
+  imprimir_usuario(bot),
+  imprimir_lista(PG),
+  readin(S),obtener_problema(S,N).
+
+% obtener_problema/2
+obtener_problema(S,N):-
+  negativo(S),!,
+  brindar_solucion(N,R),
+  imprimir_lista(R).
+
+obtener_problema(S,N):-
+  afirmativo(S),!,
+  M is N-1, obtener_problema(M).
+
+obtener_problema(S,_):-
+  member('salir',S), !.
+
+obtener_problema(_,_):-
+  imprimir_usuario(bot),
+  write('No respondiste con SI o NO, intentalo de nuevo'),
+  readin(S), obtener_problema(S).
 
 %----------------------- Q/A FX --------------------------
 

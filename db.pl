@@ -221,47 +221,49 @@ respuestas(problema, [
 % BASE DE DATOS DE CAUSAS
 
 causas_db(impresora, [
-        ['No está conectada a la corriente eléctrica.'],
-        ['No está encendida.'],
-        ['No tiene los drivers instalados.'],
-        ['No está en la misma red WiFi.'],
-        ['No tiene tinta.'],
-        ['No tiene papel.'],
+        ['Esta sucia'],
+        ['Esta vieja'],
         ['Los cabezales se encuentran desalineados.'],
-        ['Esta sucia']
+        ['No tiene papel.'],
+        ['No tiene tinta.'],
+        ['No está en la misma red WiFi.'],
+        ['No tiene los drivers instalados.'],
+        ['No está encendida.'],
+        ['No está conectada a la corriente eléctrica.']
         ]).
 
 causas_db(computadora, [
-        ['Se encuentra descargada.'],
-        ['No está encendida.'],
-        ['No está actualizada.'],
-        ['No está conectada al WiFi.'],
-        ['Está desconectada de sus datos.'],
-        ['Está llena y por eso no responde.'],
-        ['Está sucia.'],
-        ['Está vieja']
+        ['Está vieja'],  %8
+        ['Está sucia.'], %7
+        ['Está llena y por eso no responde.'], %6
+        ['Está desconectada de sus datos.'], %5
+        ['No está conectada al WiFi.'], %4
+        ['No está actualizada.'], %3
+        ['No está encendida.'], %2
+        ['Se encuentra descargada.'] %1
         ]).
 
 causas_db(parlante, [
-        ['No está conectado.'],
-        ['Los servicios de streaming no están conectados.'],
-        ['Tiene el voluen bajo.'],
-        ['Está pausado.'],
-        ['No está conectado a la red.'],
-        ['NO está concetado a la misma red WiFi.'],
+        ['Alexa está desconectada'], % 8
         ['El Sistema no está soportado.'],
-        ['Alexa está desconectada']
+        ['NO está concetado a la misma red WiFi.'],
+        ['No está conectado a la red.'],
+        ['Está pausado.'],
+        ['Tiene el voluen bajo.'],
+        ['Los servicios de streaming no están conectados.'],
+        ['No está conectado.'] %1
         ]).
 
 causas_db(audifonos, [
-        ['Se encuentra descargada.'],
-        ['No está encendida.'],
-        ['No está actualizada.'],
-        ['No está conectada al WiFi.'],
-        ['Está desconectada de sus datos.'],
-        ['Está llena y por eso no responde.'],
-        ['Está sucia.'],
-        ['Está vieja']
+        ['Están viejos'], %9
+        ['Están sucios.'],
+        ['Están pausados.'],
+        ['Tiene el volumen bajo.'],
+        ['Están des-actualizados.'],
+        ['Las cubiertas están deterioradas.'],
+        ['Están mal colocados.'],
+        ['No están conectados.'],
+        ['No están cargados.'] %1
         ]).
 
 % BASE DE DATOS DE PREGUNTAS.
@@ -274,68 +276,68 @@ preguntas_db(dispositivo, [
         ]).
 
 preguntas_db(impresora, [
-        ['Esta conectada a la corriente?'], %C1
-        ['Esta encendida?'], %C2
-        ['Hay algun movimiento o respuesta?'], %C3
-        ['Tiene los drivers instalados?'], %C4
-        ['Su computadora esta en la misma red WiFi de la impresora?'], %C5
-        ['Tiene tinta?'], %C6
-        ['Tiene papel?'], %C7
+        ['Esta nueva?'], %C10
+        ['Esta limpia?'], %C9
         ['Los cabezales estan alineados?'], %C8
-        ['Esta sucia?'], %C9
-        ['Esta vieja?'] %C10
+        ['Tiene papel?'], %C7
+        ['Tiene tinta?'], %C6
+        ['Su computadora esta en la misma red WiFi de la impresora?'], %C5
+        ['Tiene los drivers instalados?'], %C4
+        ['Hay algun movimiento o respuesta?'], %C3
+        ['Esta encendida?'], %C2
+        ['Esta conectada a la corriente?'] %C1
         ]).
 
 preguntas_db(computadora, [
-        ['Esta cargada?'], %C1
-        ['Esta encendida?'], %C2
-        ['Hay alguna respuesta en la pantalla o Touch Bar?'], %C3
-        ['El sistema operativo esta actualizado?'], %C4
-        ['Esta conectada a WiFi?'], %C5
-        ['Esta conectada a iCloud?'] %C6
-        ['El disco de almacenamiento esta lleno?'], %C7
+        ['Esta nueva?'], %C10
+        ['Esta limpia?'], %C9
         ['El volumen esta alto?'], %C8
-        ['Esta sucia?'], %C9
-        ['Esta vieja?'] %C10
+        ['El disco de almacenamiento esta lleno?'], %C7
+        ['Esta conectada a iCloud?'], %C6
+        ['Esta conectada a WiFi?'], %C5
+        ['El sistema operativo esta actualizado?'], %C4
+        ['Hay alguna respuesta en la pantalla o Touch Bar?'], %C3
+        ['Esta encendida?'], %C2
+        ['Esta cargada?'] %C1
         ]).
 
 preguntas_db(parlante, [
-        ['Esta conectado a la corriente?'], %C1
-        ['Los servicios de streaming estan activados?'] %C2
-        ['El volumen esta alto?'], %C3
-        ['Esta pausada la reproduccion?'], %C4
-        ['El parlante esta conectado a la red WiFi?'], %C5
-        ['El dispositivo controlador esta en la misma red WiFi del parlante?'], %C6
-        ['El dispositivo controlador esta soportado por la aplicacion?'] %C7
+        ['Esta nuevo?'], %C10
+        ['Esta limpio?'], %C9
         ['Alexa esta activada?'], %C8
-        ['Esta sucio?'], %C9
-        ['Esta viejo?'] %C10
+        ['El dispositivo controlador esta soportado por la aplicacion?'], %C7
+        ['El dispositivo controlador esta en la misma red WiFi del parlante?'], %C6
+        ['El parlante esta conectado a la red WiFi?'], %C5
+        ['Esta pausada la reproduccion?'], %C4
+        ['El volumen esta alto?'], %C3
+        ['Los servicios de streaming estan activados?'], %C2
+        ['Esta conectado a la corriente?'] %C1
         ]).
 
 preguntas_db(audifonos, [
-        ['Estan cargados?'], %C1
-        ['Estan conectados al dispositivo con el audio?'] %C2
-        ['Estan bien colocados?'], %C3
-        ['Las cubiertas de los oidos estan en buen estado?'], %C4
-        ['El software esta actualizado?'], %C5
-        ['Se conecta con estabilidad al dispositivo con el audio?'], %C6
-        ['El volumen esta alto?'] %C7
+        ['Son nuevos?'], %C10
+        ['Estan limpios?'], %C9
         ['El audio esta pausado?'], %C8
-        ['Estan sucios?'], %C9
-        ['Estan viejos?'] %C10
+        ['El volumen esta alto?'], %C7
+        ['Se conecta con estabilidad al dispositivo con el audio?'], %C6
+        ['El software esta actualizado?'], %C5
+        ['Las cubiertas de los oidos estan en buen estado?'], %C4
+        ['Estan bien colocados?'], %C3
+        ['Estan conectados al dispositivo con el audio?'], %C2
+        ['Estan cargados?'] %C1
         ]).
 
 preguntas_db(pareja, [
         ['Lo/la nota triste?'], %C1
         ['Ha notado algun comportamiento de depresion en el/ella?'], %C1
-        ['Considera que es alguien toxico para usted?'] %C2
-        ['Se siente drenado emocionalmente cuando lo/la ve?'] %C2
-        ['Lo/la fuerza a hacer cosas que usted no quiere?'] %C2
+        ['Considera que es alguien toxico para usted?'], %C2
+        ['Se siente drenado emocionalmente cuando lo/la ve?'], %C2
+        ['Lo/la fuerza a hacer cosas que usted no quiere?'], %C2
         ['Considera que se siente emocionalmente desconectado de usted?'], %C3
         ['Considera que el/ella tiene verguenza de sí mismo/misma?'], %C4
         ['Considera que estan en la misma red/tiene la misma perspectiva sobre el mundo que usted?'], %C5
         ['Le parece a usted que el/ella tiene miedo de alguna situacion?'], %C6
-        ['Ha manifestado alguna duda acerca de mantener la relacion?'] %C7
+        ['Ha manifestado alguna duda acerca de mantener la relacion?'], %C7
         ['Esta sucio?'], %C8
         ['Esta viejo?'], %C9
         ['Tiene la cabeza desalineada?'] %C10

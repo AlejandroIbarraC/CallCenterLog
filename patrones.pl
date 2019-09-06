@@ -84,26 +84,34 @@ patronReferencia([_|T],X):-
 
 %~ problema
 patronProblema([tengo, un, problema, X |_], X):- !.
+patronProblema([presentan, un, problema, X |_], X):-!.
 patronProblema([presenta, un, problema, X |_], X):-!.
 patronProblema([tiene, un, problema, X |_], X):-!.
+patronProblema([tienen, un, problema, X |_], X):-!.
 patronProblema([problema, X |_], X):-!.
 
 %~ funciona
 patronProblema([no, funciona, X |_], X):-!.
+patronProblema([no, funcionan, X |_], X):-!.
 patronProblema([no, esta, funcionando, X |_], X):- !.
+patronProblema([no, estan, funcionando, X |_], X):- !.
 patronProblema([mal, funcionamiento, X |_], X):-!.
 patronProblema([funciona, mal, X |_], X):- !.
+patronProblema([funcionan, mal, X |_], X):- !.
 
 %~ daños
 patronProblema([esta, dañado, X|_], X):- !.
+patronProblema([estan, dañados, X|_], X):- !.
 patronProblema([esta, dañada, X|_], X):- !.
 patronProblema([se,daño, X|_], X):-!.
+patronProblema([se,dañaron, X|_], X):-!.
 patronProblema([un,daño, X|_], X):-!.
 
 %~ otros
 patronProblema([algo, anda, mal, X |_], X):-!.
 patronProblema([presenta, un, error, X |_], X):-!.
 patronProblema([esta, malo, X |_], X):-!.
+patronProblema([estan, malos, X |_], X):-!.
 patronProblema([_|T], X):-
   patronProblema(T, X).
 
