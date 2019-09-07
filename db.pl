@@ -140,55 +140,55 @@ respuestas(incompresion,[['No he entendido lo que dices. Porfavor ingresa una or
 % LAS SOLUCIONES A PROBLEMAS SE NUMERAN CON S + NUMERO DE SOLUCION DE LA TABLA CSR
 
 respuestas(impresora, [
-        ['Conecte la impresora a la electricidad.'], %S1
-        ['Proceda a encender la impresora.'], %S2
-        ['Reinicie la impresora.'], %S3
-        ['Instale los drivers de la impresora en su computadora.'], %S4
-        ['Conecte su computadora a la red WiFi de la impresora.'], %S5
-        ['Reemplaze la tinta en su impresora.'], %S6
-        ['Cargue el papel en el portapapeles de su impresora.'], %S7
-        ['Siga el procedimiento de alineamiento de cabezales de su impresora.'], %S8
+        ['Compre una nueva impresora.'], %S10
         ['Limpie su impresora con mucho cuidado.'], %S9
-        ['Compre una nueva impresora.'] %S10
+        ['Siga el procedimiento de alineamiento de cabezales de su impresora.'], %S8
+        ['Cargue el papel en el portapapeles de su impresora.'], %S7
+        ['Reemplaze la tinta en su impresora.'], %S6
+        ['Conecte su computadora a la red WiFi de la impresora.'], %S5
+        ['Instale los drivers de la impresora en su computadora.'], %S4
+        ['Reinicie la impresora.'], %S3
+        ['Proceda a encender la impresora.'], %S2
+        ['Conecte la impresora a la electricidad.'] %S1
         ]).
 
 respuestas(computadora, [
-        ['Conecte la computadora a la electricidad.'], %S1
-        ['Proceda a encender la computadora presionando el botón de Touch ID.'], %S2
-        ['Reinicie la computadora presionando el botón de Touch ID dos veces.'], %S3
-        ['Actualice el sistema operativo en Preferencias del Sistema.'], %S4
-        ['Conecte su computadora a una red WiFi.'], %S5
-        ['Conecte su cuenta de iCloud en Preferencias del Sistema -> iCloud.'], %S6
-        ['Libere espacio de su computadora desde el menú Apple -> Almacenamiento.'], %S7
-        ['Súbale el volumen a su computadora, tocando el icono de volumen en la Touch Bar.'], %S8
+        ['Compre una nueva computadora.'], %S10
         ['Limpie su computadora con mucho cuidado.'], %S9
-        ['Compre una nueva computadora.'] %S10
+        ['Súbale el volumen a su computadora, tocando el icono de volumen en la Touch Bar.'], %S8
+        ['Libere espacio de su computadora desde el menú Apple -> Almacenamiento.'], %S7
+        ['Conecte su cuenta de iCloud en Preferencias del Sistema -> iCloud.'], %S6
+        ['Conecte su computadora a una red WiFi.'], %S5
+        ['Actualice el sistema operativo en Preferencias del Sistema.'], %S4
+        ['Reinicie la computadora presionando el botón de Touch ID dos veces.'], %S3
+        ['Proceda a encender la computadora presionando el botón de Touch ID.'], %S2
+        ['Conecte la computadora a la electricidad.'] %S1
         ]).
 
 respuestas(parlante, [
-        ['Conecte su parlante a la electricidad.'], %S1
-        ['Conecte el servicio de streaming de su preferencia en la app Controller.'], %S2
-        ['Subale el volumen al audio desde su dispositivo controlador o desde el parlante.'], %S3
-        ['Toque el icono de Play en su dispositivo controlador o en el parlante.'], %S4
-        ['Inicie el proceso de configuracion de red para el parlante.'], %S5
-        ['Conectese a la red WiFi donde esta su palante.'], %S6
-        ['Utilice un dispositivo soportado por la app Controller.'], %S7
-        ['Active Alexa desde la app Controller.'], %S8
+        ['Compre un nuevo parlante.'], %S10
         ['Limpie su parlante con mucho cuidado.'], %S9
-        ['Compre un nuevo parlante.'] %S10
+        ['Active Alexa desde la app Controller.'], %S8
+        ['Utilice un dispositivo soportado por la app Controller.'], %S7
+        ['Conectese a la red WiFi donde esta su palante.'], %S6
+        ['Inicie el proceso de configuracion de red para el parlante.'], %S5
+        ['Toque el icono de Play en su dispositivo controlador o en el parlante.'], %S4
+        ['Subale el volumen al audio desde su dispositivo controlador o desde el parlante.'], %S3
+        ['Conecte el servicio de streaming de su preferencia en la app Controller.'], %S2
+        ['Conecte su parlante a la electricidad.'] %S1
         ]).
 
 respuestas(audifonos, [
-        ['Cargue sus audifonos con el cable USB-C incluido.'], %S1
-        ['Conecte sus audionos al dispositivo por medio de Bluetooth.'], %S2
-        ['Coloque bien sus audifonos en su cabeza.'], %S3
-        ['Cambie las cubiertas de los oidos para sus audifonos por unas nuevas.'], %S4
-        ['Actualice el software de sus audifonos desde la app movil.'], %S5
-        ['Reinicie el software de sus audifonos.'], %S6
-        ['Subale el volumen a sus audifonos desde el dispositivo que controla el audio.'], %S7
-        ['Toque el boton de Play en el dispositivo que controla el audio.'], %S8
+        ['Compre unos nuevos audifonos.'], %S10
         ['Limpie sus audifonos con mucho cuidado.'], %S9
-        ['Compre unos nuevos audifonos.'] %S10
+        ['Toque el boton de Play en el dispositivo que controla el audio.'], %S8
+        ['Subale el volumen a sus audifonos desde el dispositivo que controla el audio.'], %S7
+        ['Reinicie el software de sus audifonos.'], %S6
+        ['Actualice el software de sus audifonos desde la app movil.'], %S5
+        ['Cambie las cubiertas de los oidos para sus audifonos por unas nuevas.'], %S4
+        ['Coloque bien sus audifonos en su cabeza.'], %S3
+        ['Conecte sus audionos al dispositivo por medio de Bluetooth.'], %S2
+        ['Cargue sus audifonos con el cable USB-C incluido.'] %S1
         ]).
 
 respuestas(pareja, [
@@ -294,7 +294,7 @@ preguntas_db(computadora, [
         ['Esta nueva?'], %C10
         ['Esta limpia?'], %C9
         ['El volumen esta alto?'], %C8
-        ['El disco de almacenamiento esta lleno?'], %C7
+        ['El disco de almacenamiento aún tiene espacio?'], %C7
         ['Esta conectada a iCloud?'], %C6
         ['Esta conectada a WiFi?'], %C5
         ['El sistema operativo esta actualizado?'], %C4
@@ -310,7 +310,7 @@ preguntas_db(parlante, [
         ['El dispositivo controlador esta soportado por la aplicacion?'], %C7
         ['El dispositivo controlador esta en la misma red WiFi del parlante?'], %C6
         ['El parlante esta conectado a la red WiFi?'], %C5
-        ['Esta pausada la reproduccion?'], %C4
+        ['Esta en play la reproduccion?'], %C4
         ['El volumen esta alto?'], %C3
         ['Los servicios de streaming estan activados?'], %C2
         ['Esta conectado a la corriente?'] %C1

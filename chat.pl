@@ -14,7 +14,8 @@
 
  % Variables que almacenan la información del Usuario
  :- dynamic nombre_usuario/1,
-            dispositivo/1.
+            dispositivo/1,
+            solicitud/1.
 
 %----------------------- INICIO --------------------------
 
@@ -56,6 +57,7 @@ conversacion:-
 generar_respuesta(S,R):-
   patronConsulta(S,_),
   verificar_dispositivo(S),!,
+  assert(solicitud(consulta)),
   resolver_consulta,
   respuestas(fin_oracion,LR),
   respuesta_aleatoria(LR,R).
@@ -63,6 +65,7 @@ generar_respuesta(S,R):-
 % Si no lo introduce, en la consulta, se procede a preguntarlo
 generar_respuesta(S,R):-
   patronConsulta(S,_),!,
+  assert(solicitud(consulta)),
   obtener_dispositivo,
   resolver_consulta,
   respuestas(fin_oracion,LR),
@@ -74,6 +77,7 @@ generar_respuesta(S,R):-
 generar_respuesta(S,R):-
   patronReferencia(S,_), verificar_dispositivo(S),
   es_causa(S,N),!,
+  assert(solicitud(referencia)),
   imprimir_usuario(bot),write('Esta referencia puede serte útil: '),
   brindar_referencia(N),
   respuestas(fin_oracion,LR),
@@ -84,6 +88,7 @@ generar_respuesta(S,R):-
   patronReferencia(S,_),
   verificar_dispositivo(S),
   es_caso_especial(S,N),!,
+  assert(solicitud(referencia)),
   imprimir_usuario(bot),write('Estas referencias te ayudarán: \n'),
   brindar_referencia(N),
   respuestas(fin_oracion,LR),
@@ -93,6 +98,7 @@ generar_respuesta(S,R):-
 generar_respuesta(S,R):-
   patronReferencia(S,_),
   verificar_dispositivo(S),!,
+  assert(solicitud(referencia)),
   brindar_referencias,
   respuestas(fin_oracion,LR),
   respuesta_aleatoria(LR,R).
@@ -100,6 +106,7 @@ generar_respuesta(S,R):-
 % Si no dice ni dispositivo, ni problema se brindan todas.
 generar_respuesta(S,R):-
   patronReferencia(S,_),!,
+  assert(solicitud(referencia)),
   obtener_dispositivo,
   brindar_referencias,
   respuestas(fin_oracion,LR),
@@ -112,11 +119,13 @@ generar_respuesta(S,R):-
 generar_respuesta(S,R):-
   patronProblema(S,_), verificar_dispositivo(S),
   es_causa(S,N),!,
+  assert(solicitud(problema)),
   brindar_solucion(N,R).
 
 generar_respuesta(S,R):-
   patronProblema(S,_), verificar_dispositivo(S),
   es_caso_especial(S,N),!,
+  assert(solicitud(problema)),
   brindar_solucion(N),
   respuestas(fin_oracion,LR),
   respuesta_aleatoria(LR,R).
@@ -124,6 +133,7 @@ generar_respuesta(S,R):-
 % El usuario indica que tiene un problema y el dispositivo.
 generar_respuesta(S,R):-
   patronProblema(S,_), verificar_dispositivo(S),!,
+  assert(solicitud(problema)),
   conoce_el_problema,
   respuestas(fin_oracion,LR),
   respuesta_aleatoria(LR,R).
@@ -131,6 +141,7 @@ generar_respuesta(S,R):-
 % El usuario solo indica que tiene un problema.
 generar_respuesta(S,R):-
   patronProblema(S,_), !,
+  assert(solicitud(problema)),
   obtener_dispositivo,
   conoce_el_problema,
   respuestas(fin_oracion,LR),
@@ -173,12 +184,6 @@ generar_respuesta(S, R):-
   respuestas(yo, D),
   respuesta_aleatoria(D, R).
 
-% Preguntar algo aleatorio
-generar_respuesta(S, R):-
-  \+ buscar_pregunta(S), !,
-	respuestas(preguntas_aleatorias, Res),
-	respuesta_aleatoria(Res, R).
-
 % Responder algo aleatorio
 generar_respuesta(S, R):-
   buscar_pregunta(S), !,
@@ -187,8 +192,14 @@ generar_respuesta(S, R):-
 
 % Detectar pregunta con por qué
 generar_respuesta(S, R):-
-	oracion(S), !,
+	oracion(S,_), buscar_pregunta(S), !,
   respuestas(preguntas_aleatorias,PA),
+  respuesta_aleatoria(PA,R).
+
+% Detectar frase válida y responder algo random
+generar_respuesta(S, R):-
+	oracion(S,_), !,
+  respuestas(respuestas_aleatorias,PA),
   respuesta_aleatoria(PA,R).
 
 % Si el usuario ingresa una incoherencia
@@ -479,9 +490,9 @@ es_caso_especial(S,N):-
 % Retorna un resumen de la conversación que se tuvo.
 print_report:-
   write('\n--- Resumen de la Conversación ---\n'),
-	nombre_usuario(X), dispositivo(Z),
-  imprimir_lista(['Usuario: ', X, '\nDispositivo: ', Z]),
-  retract(nombre_usuario(X)),retract(dispositivo(Z)),fail.
+	nombre_usuario(X), dispositivo(Z), solicitud(Y),
+  imprimir_lista(['Usuario: ', X, '\nDispositivo: ', Z, '\nSolicitud: ',Y]),
+  retract(nombre_usuario(X)),retract(dispositivo(Z)),retract(solicitud(Y)),fail.
 
 % print_report:-
 %         nl, feedback(X, Y), write(X), write(' : '), imprimir_lista(Y),
