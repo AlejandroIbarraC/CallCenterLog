@@ -134,6 +134,8 @@ respuestas(respuestas_aleatorias, [
         ['Estoy de acuerdo con lo que dices.']
         ]).
 
+respuestas(incompresion,[['No he entendido lo que dices. Porfavor ingresa una oración.']]).
+
 % BASE DE DATOS DE RESPUESTAS
 % LAS SOLUCIONES A PROBLEMAS SE NUMERAN CON S + NUMERO DE SOLUCION DE LA TABLA CSR
 

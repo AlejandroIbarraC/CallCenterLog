@@ -173,18 +173,6 @@ generar_respuesta(S, R):-
   respuestas(yo, D),
   respuesta_aleatoria(D, R).
 
-% Detectar pregunta con por qué
-generar_respuesta(S, R):-
-	oracion(_Tree1, S, _Rest), !,
-	pregunta(_Tree2, Rep,[]),
-	append(Rep, ['?'], R).
-
-% Detectar pregunta
-generar_respuesta(S, R):-
-	pregunta(_Tree2, S, _Rest), !,
-	oracion(_Tree1, Rep,[]),
-	append([yes, ','|Rep], ['!'], R).
-
 % Preguntar algo aleatorio
 generar_respuesta(S, R):-
   \+ buscar_pregunta(S), !,
@@ -193,9 +181,20 @@ generar_respuesta(S, R):-
 
 % Responder algo aleatorio
 generar_respuesta(S, R):-
-    buscar_pregunta(S), !,
-    respuestas(respuestas_aleatorias, Res),
-    respuesta_aleatoria(Res, R).
+  buscar_pregunta(S), !,
+  respuestas(respuestas_aleatorias, Res),
+  respuesta_aleatoria(Res, R).
+
+% Detectar pregunta con por qué
+generar_respuesta(S, R):-
+	oracion(S), !,
+  respuestas(preguntas_aleatorias,PA),
+  respuesta_aleatoria(PA,R).
+
+% Si el usuario ingresa una incoherencia
+generar_respuesta(_,R):-
+  respuestas(incompresion,RL),
+  respuesta_aleatoria(RL,R).
 
 %---------------------------------------------------------
 
@@ -303,6 +302,10 @@ obtener_problema:-
   length(PP,N),obtener_problema(N).
 
 % obtener_problema/1
+obtener_problema(0):-
+  imprimir_usuario(bot),
+  write('Lo lamento, parece que tu problema no se encuentra en mi base datos.\n'),!.
+
 obtener_problema(N):-
   integer(N),!,
   dispositivo(D),nElemento(D,1,Disp),
