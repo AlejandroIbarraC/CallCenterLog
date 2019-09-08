@@ -2,7 +2,7 @@
     <img src="https://bit.ly/2lAfnUw" height="200" width="458"/>
 </p>
 
-# CE3104 - Machine ProLog Bot [MP Bot]
+# CE3104 - CallCenterLog [MP Bot]
 ***
 <p align="left">
   <img
@@ -19,7 +19,7 @@
 ## Descripción
 
 <p align="justify">
-<b>MP Bot</b> corresponde al <i>segundo Proyecto</i> del curso de <i>Lenguajes, Compiladores e Intérpretes (CE3104)</i>, el cual consiste en la implementación de un Sistema Experto (SE) para <b>solución de problemas</b> comúnes de un CallCenter de IT. El presente es un sistema de chat que permite al usuario realizar <b>consultas al bot</b> y recibir la mejor solución. Esta aplicación está desarrollada bajo el <b>paradigma de programación lógico</b> utilizando el lenguaje <b>Prolog</b>. 
+<b>CallCenterLog</b> corresponde al <i>segundo Proyecto</i> del curso de <i>Lenguajes, Compiladores e Intérpretes (CE3104)</i>, el cual consiste en la implementación de un Sistema Experto (SE) para <b>solución de problemas</b> comúnes de un CallCenter de IT. El presente es un sistema de chat que permite al usuario realizar <b>consultas al bot</b> y recibir la mejor solución. Esta aplicación está desarrollada bajo el <b>paradigma de programación lógico</b> utilizando el lenguaje <b>Prolog</b>. 
 </p>
 
 ## Instalación
@@ -42,7 +42,7 @@
 ```
 7. Presione Enter. Se creará su clon local para Machine-ProLog-Bot.
 
-8. Seleccione el branch 'master' para obtener el código del IT-Prolog-Bot. Y utilice el archivo ```main.pl``` para iniciar el bot.
+8. Seleccione el branch 'master' para obtener el código del IT-Prolog-Bot. Y utilice el archivo ```chat.pl``` para iniciar el bot.
 
 ## Pre-requisitos
 
