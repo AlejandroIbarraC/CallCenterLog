@@ -19,13 +19,30 @@ contiene(A, B) :-
     sublista(B, A),
     B \= [].
 
-% imprimirLista(List)
+% imprimir_lista/1
 % Imprime una lista (oración) sin corchetes ni comas.
-imprimirLista([]):- nl.
-imprimirLista([H|T]):-
+imprimir_lista([]):- nl.
+imprimir_lista([H|T]):-
     write(H),
     write(' '),
-    imprimirLista(T).
+    imprimir_lista(T).
+
+% imprimir_ul/2
+% Imprime el contenido de una lista como una unsorted list
+imprimir_ul(0,_).
+imprimir_ul(N,L):-
+  nElemento(L, N, R),
+  write('\t* '), imprimir_lista(R),
+  M is N - 1,
+  imprimir_ul(M,L).
+
+% imprimir_seleccion/2
+% Imprime el contenido de los indices seleccionados
+imprimir_seleccion(_,[]).
+imprimir_seleccion(L,[N1|NX]):-
+  nElemento(L, N1, R),
+  write('\t* '), imprimir_lista(R),
+  imprimir_seleccion(L,NX).
 
 % interseca(Set1, Set2, SubSet)
 % Verifica si SubSet interseca a Set1 y Set2
@@ -52,6 +69,6 @@ sublista(S, L) :-
 % subset(SubSet, Set)
 % Retorna true si SubSet es parte de Set
 subset([], _).
-subset([H|T], L2):- 
+subset([H|T], L2):-
     member(H, L2),
     subset(T, L2).
