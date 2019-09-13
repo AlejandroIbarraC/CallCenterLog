@@ -58,6 +58,10 @@ patronConsulta([quiero, saber, las, causas, X|_],X):-!.
 patronConsulta([cual, es, la, causa, X|_],X):-!.
 patronConsulta([causas, X|_],X):-!.
 patronConsulta([causa, X|_],X):-!.
+patronConsulta([que, puede, causar, X|_],X):-!.
+
+% Why?
+patronConsulta([por, que, X|_],X):-!.
 
 patronConsulta([_|T],X):-
   patronConsulta(T,X).
@@ -135,6 +139,13 @@ patronProbRef(parlante,[no, suena, X|_],X, [10,9,8,7]):- !.
 patronProbRef(audifonos,[no, suenan, X|_],X, [9,4,3]):- !.
 patronProbRef(audifonos,[no, se, escuchan, X|_],X, [9,4,3]):- !.
 
+% Problema-Referencia de pareja
+patronProbRef(pareja, [quiero, terminarla, X|_],X,[10,7,5]):- !.
+patronProbRef(pareja, [quiero, terminarlo, X|_],X,[10,7,5]):- !.
+patronProbRef(pareja, [no, lo, soporto, X|_],X,[4,9]):- !.
+patronProbRef(pareja, [no, la, soporto, X|_],X,[4,9]):- !.
+patronProbRef(pareja, [me, es, infiel, X|_],X,[9]):- !.
+
 patronProbRef(D,[_|T],X,N):-
   patronProbRef(D,T,X,N).
 
@@ -191,6 +202,20 @@ patronCausa(audifonos, [volumen, bajo, X |_], X, NS):-!, NS is 4.
 patronCausa(audifonos, [pausados, X |_], X, NS):- !, NS is 3.
 patronCausa(audifonos, [estan, sucios, X |_], X, NS):- !, NS is 2.
 patronCausa(audifonos, [estan, viejos, X |_], X, NS):- !, NS is 1.
+
+% Causas pareja
+patronCausa(pareja, [se, siente, triste, X |_], X, NS):- !, NS is 10.
+patronCausa(pareja, [es, toxico, X |_], X, NS):- !, NS is 9.
+patronCausa(pareja, [desconectado, emocionalmente, X |_], X, NS):- !, NS is 8.
+patronCausa(pareja, [verguenza, de, si, mismo, X |_], X, NS):- !, NS is 7.
+patronCausa(pareja, [no, esta, en, la, misma, red, X |_], X, NS):- !, NS is 6.
+patronCausa(pareja, [tiene, miedo, X |_], X, NS):- !, NS is 5.
+patronCausa(pareja, [duda, de, la, relacion, X |_], X, NS):-!, NS is 4.
+patronCausa(pareja, [esta, sucio, X |_], X, NS):- !, NS is 3.
+patronCausa(pareja, [esta, sucia, X |_], X, NS):- !, NS is 3.
+patronCausa(pareja, [esta, viejo, X |_], X, NS):- !, NS is 2.
+patronCausa(pareja, [esta, vieja, X |_], X, NS):- !, NS is 2.
+patronCausa(pareja, [cabeza, desalineada, X |_], X, NS):- !, NS is 1.
 
 % patronCausa( Dispositivo, Lista, Comparador, Número de Solución).
 patronCausa(D, [_|T], X, NS):-
