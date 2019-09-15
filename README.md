@@ -38,15 +38,17 @@
 
 6. Escriba 'git clone', y luego pegue la URL que copió en el Paso 2.
 ```
-    $ git clone https://github.com/estalvgs1999/CE3104-Machine-ProLog.git
+    $ git clone https://github.com/estalvgs1999/CE3104-CallCenterLog.git
 ```
-7. Presione Enter. Se creará su clon local para Machine-ProLog-Bot.
+7. Presione Enter. Se creará su clon local para CallCenterLog.
 
 8. Seleccione el branch 'master' para obtener el código del IT-Prolog-Bot. Y utilice el archivo ```chat.pl``` para iniciar el bot.
 
 ## Pre-requisitos
+<p> Para poder correr el bot deberá tener instalado un compilador de prolog en su computadora.<br> ¡Recomendamos que instale <a href="https://www.swi-prolog.org/Download.html"> swi-prolog</a>! Se encuentra disponible para windows, Linux y Mac OS.</p>
 
-## Vista Previa
+## Información Adicional
+<p align='justify'> El proyecto cuenta con una buena documentación, para conocer cómo lo hicimos entra a la carpeta docs y tendrás acceso a contenido exclusivo de CallCenterLog como las tablas CSR (Causa-Solución-Referencia), una bitácora de trabajo, un manual de usuario y un paper en el que se explican los algoritmos desarrollados. Si aún tienes necesidad de más información, te dejamos en la carpeta papers, material altamente útil sobre <i>Lenguaje Natural, gramáticas libres de contexto y Sistemas Expertos</i> de David H. Warren y Fernando Pereira, pioneros en la programación lógica y Prolog.</p>
 
 ## Autores
 
@@ -54,7 +56,10 @@
 * **Alejandro Ibarra** - *Desarrollador* - [@AlejandroIbarraC](https://github.com/AlejandroIbarraC)
 * **Jesús Sandoval** - *Desarrollador* - [@shuzz22260427](https://github.com/shuzz22260427)
 
+> Agradecemos a <a href="https://github.com/jlsalmon/chatbot">@jsalmon </a> cuyo código fue un importante punto de referencia para el desarrollo de CallCenterLog
+
 <p align="center"> Proyecto desarrollado en el <b>Instituto Tecnológico de Costa Rica</b> | 2019 🄯</p>
+
 
 
 ## Licencia
