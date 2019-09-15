@@ -58,6 +58,10 @@ patronConsulta([quiero, saber, las, causas, X|_],X):-!.
 patronConsulta([cual, es, la, causa, X|_],X):-!.
 patronConsulta([causas, X|_],X):-!.
 patronConsulta([causa, X|_],X):-!.
+patronConsulta([que, puede, causar, X|_],X):-!.
+
+% Why?
+patronConsulta([por, que, X|_],X):-!.
 
 patronConsulta([_|T],X):-
   patronConsulta(T,X).
@@ -99,6 +103,7 @@ patronProblema([no, estan, funcionando, X |_], X):- !.
 patronProblema([mal, funcionamiento, X |_], X):-!.
 patronProblema([funciona, mal, X |_], X):- !.
 patronProblema([funcionan, mal, X |_], X):- !.
+patronProblema([funcionar, X |_], X):- !.
 
 %~ daños
 patronProblema([esta, dañado, X|_], X):- !.
@@ -108,15 +113,27 @@ patronProblema([se,daño, X|_], X):-!.
 patronProblema([se,dañaron, X|_], X):-!.
 patronProblema([un,daño, X|_], X):-!.
 
-%~ otros
+% Expresiones varias
+patronProblema([no, corre, X |_], X):-!.
 patronProblema([algo, anda, mal, X |_], X):-!.
 patronProblema([presenta, un, error, X |_], X):-!.
 patronProblema([esta, malo, X |_], X):-!.
 patronProblema([estan, malos, X |_], X):-!.
+patronProblema([no, sirve, X |_], X):-!.
+patronProblema([tengo, un, inconveniente, X |_], X):-!.
+patronProblema([tengo, inconvenientes, X |_], X):-!.
+patronProblema([presento, un, inconveniente, X |_], X):-!.
+patronProblema([presenta, un, inconveniente, X |_], X):-!.
+patronProblema([se, me, presenta, un, inconveniente, X |_], X):-!.
+patronProblema([tengo, dificultades, X |_], X):-!.
+patronProblema([tengo, una, dificultad, X |_], X):-!.
+patronProblema([dificultades, X |_], X):-!.
+patronProblema([dificultad, X |_], X):-!.
+
 patronProblema([_|T], X):-
   patronProblema(T, X).
 
-%patronProbRef/4
+% patronProbRef/4
 
 % Problema-Referencia de impresora
 patronProbRef(impresora,[no, imprime, X|_],X, [9,5,4]):- !.
@@ -128,12 +145,20 @@ patronProbRef(impresora,[la, impresion, sale, sucia, X|_],X, [3,2]):- !.
 % Problema-Referencia de computadora
 patronProbRef(computadora,[no, trabaja, X|_],X, [10,9,4]):- !.
 
+
 % Problema-Referencia de parlante
 patronProbRef(parlante,[no, suena, X|_],X, [10,9,8,7]):- !.
 
 % Problema-Referencia de audifonos
 patronProbRef(audifonos,[no, suenan, X|_],X, [9,4,3]):- !.
 patronProbRef(audifonos,[no, se, escuchan, X|_],X, [9,4,3]):- !.
+
+% Problema-Referencia de pareja
+patronProbRef(pareja, [quiero, terminarla, X|_],X,[10,7,5]):- !.
+patronProbRef(pareja, [quiero, terminarlo, X|_],X,[10,7,5]):- !.
+patronProbRef(pareja, [no, lo, soporto, X|_],X,[4,9]):- !.
+patronProbRef(pareja, [no, la, soporto, X|_],X,[4,9]):- !.
+patronProbRef(pareja, [me, es, infiel, X|_],X,[9]):- !.
 
 patronProbRef(D,[_|T],X,N):-
   patronProbRef(D,T,X,N).
@@ -191,6 +216,23 @@ patronCausa(audifonos, [volumen, bajo, X |_], X, NS):-!, NS is 4.
 patronCausa(audifonos, [pausados, X |_], X, NS):- !, NS is 3.
 patronCausa(audifonos, [estan, sucios, X |_], X, NS):- !, NS is 2.
 patronCausa(audifonos, [estan, viejos, X |_], X, NS):- !, NS is 1.
+
+% Causas pareja
+patronCausa(pareja, [se, siente, triste, X |_], X, NS):- !, NS is 10.
+patronCausa(pareja, [es, toxico, X |_], X, NS):- !, NS is 9.
+patronCausa(pareja, [desconectado, emocionalmente, X |_], X, NS):- !, NS is 8.
+patronCausa(pareja, [verguenza, de, si, mismo, X |_], X, NS):- !, NS is 7.
+patronCausa(pareja, [no, esta, en, la, misma, red, X |_], X, NS):- !, NS is 6.
+patronCausa(pareja, [tiene, miedo, X |_], X, NS):- !, NS is 5.
+patronCausa(pareja, [duda, de, la, relacion, X |_], X, NS):-!, NS is 4.
+patronCausa(pareja, [esta, sucio, X |_], X, NS):- !, NS is 3.
+patronCausa(pareja, [esta, sucia, X |_], X, NS):- !, NS is 3.
+patronCausa(pareja, [esta, viejo, X |_], X, NS):- !, NS is 2.
+patronCausa(pareja, [esta, vieja, X |_], X, NS):- !, NS is 2.
+patronCausa(pareja, [cabeza, desalineada, X |_], X, NS):- !, NS is 1.
+
+% Causas celular
+% patronCausa(celular, [no, hace,llamada, X|_], X, N) :- !.
 
 % patronCausa( Dispositivo, Lista, Comparador, Número de Solución).
 patronCausa(D, [_|T], X, NS):-

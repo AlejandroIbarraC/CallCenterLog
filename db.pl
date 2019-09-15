@@ -134,7 +134,19 @@ respuestas(respuestas_aleatorias, [
         ['Estoy de acuerdo con lo que dices.']
         ]).
 
-respuestas(incompresion,[['No he entendido lo que dices. Porfavor ingresa una oración.']]).
+respuestas(incompresion,[
+        ['No he entendido lo que dices.'],
+        ['Disculpa..¿Qué?'],
+        ['¿Qué clase de Klingon hablas?'],
+        ['Hablo 6 millones de idiomas y no entendí lo que dijiste..'],
+        ['Ni R2D2 entendería lo que dices!'],
+        ['Quizá Siri sepa!'],
+        ['Eskiusmi??'],
+        ['Maeeee... sea serio'],
+        ['A mí no me traes abajo tan fácil...'],
+        ['*Se va*'],
+        ['Lo siento, lo que dices no puede ser procesado inténtalo de nuevo.']
+        ]).
 
 % BASE DE DATOS DE RESPUESTAS
 % LAS SOLUCIONES A PROBLEMAS SE NUMERAN CON S + NUMERO DE SOLUCION DE LA TABLA CSR
@@ -192,16 +204,16 @@ respuestas(audifonos, [
         ]).
 
 respuestas(pareja, [
-        ['Demuestre interes genuino por los problemas de su pareja. Puede comenzar con una conversacion casual.'], %S1
-        ['Lo mas recomendable en estos casos es terminar la relacion. Una persona toxica solo trae implicaciones negativas para su vida.'], %S2
-        ['Una sugerencia es generar empatia. Ponerse en sus zapatos para entender sus sentimientos en este momento.'], %S3
-        ['Hable con el/ella para genera espacios de dialogo, donde ambos puedan discutir acerca del estado de su relacion.'], %S4
-        ['Intente buscar intereses comunes, aunque sean superficiales. Una serie, pelicula, viajar...'], %S5
-        ['Es importante mostrar que usted apoya a su pareja. Todos buscamos un apoyo en las personas que nos rodean, en especial de las que mas queremos.'], %S6
-        ['Comprenda el pensamiento de su pareja. Reflexione acerca de las razones que lo pueden llevar a pensar de esa manera.'], %S7
-        ['Limpie a su pareja con mucho cuidado.'], %S8
+        ['Hay que alinearle la cabeza con un martillo astral de otra dimension.'], %S10
         ['En estos casos, lo mejor es buscarse uno/a nuevo/a. A veces es mejor dejarlo morir. Que queda?'], %S9
-        ['Hay que alinearle la cabeza con un martillo astral de otra dimension.'] %S10
+        ['Limpie a su pareja con mucho cuidado.'], %S8
+        ['Comprenda el pensamiento de su pareja. Reflexione acerca de las razones que lo pueden llevar a pensar de esa manera.'], %S7
+        ['Es importante mostrar que usted apoya a su pareja. Todos buscamos un apoyo en las personas que nos rodean, en especial de las que mas queremos.'], %S6
+        ['Intente buscar intereses comunes, aunque sean superficiales. Una serie, pelicula, viajar...'], %S5
+        ['Hable con el/ella para genera espacios de dialogo, donde ambos puedan discutir acerca del estado de su relacion.'], %S4
+        ['Una sugerencia es generar empatia. Ponerse en sus zapatos para entender sus sentimientos en este momento.'], %S3
+        ['Lo mas recomendable en estos casos es terminar la relacion. Una persona toxica solo trae implicaciones negativas para su vida.'], %S2
+        ['Demuestre interes genuino por los problemas de su pareja. Puede comenzar con una conversacion casual.'] %S1
         ]).
 
 
@@ -268,6 +280,8 @@ causas_db(audifonos, [
         ['No están cargados.'] %1
         ]).
 
+causas_db(pareja,[]).
+
 % BASE DE DATOS DE PREGUNTAS.
 % LAS CAUSAS DE PROBLEMAS SE NUMERAN CON C + NÚMERO DE CAUSA DE LA TABLA CSR.
 
@@ -330,19 +344,16 @@ preguntas_db(audifonos, [
         ]).
 
 preguntas_db(pareja, [
-        ['Lo/la nota triste?'], %C1
-        ['Ha notado algun comportamiento de depresion en el/ella?'], %C1
-        ['Considera que es alguien toxico para usted?'], %C2
-        ['Se siente drenado emocionalmente cuando lo/la ve?'], %C2
-        ['Lo/la fuerza a hacer cosas que usted no quiere?'], %C2
-        ['Considera que se siente emocionalmente desconectado de usted?'], %C3
-        ['Considera que el/ella tiene verguenza de sí mismo/misma?'], %C4
+        ['Tiene la cabeza desalineada?'], %C10
+        ['Esta nueva?'], %C9
+        ['Esta limpa?'], %C8
+        ['Nunca ha manifestado alguna duda acerca de mantener la relacion?'], %C7
+        ['Le parece a usted que el/ella tiene seguridad de la relación?'], %C6
         ['Considera que estan en la misma red/tiene la misma perspectiva sobre el mundo que usted?'], %C5
-        ['Le parece a usted que el/ella tiene miedo de alguna situacion?'], %C6
-        ['Ha manifestado alguna duda acerca de mantener la relacion?'], %C7
-        ['Esta sucio?'], %C8
-        ['Esta viejo?'], %C9
-        ['Tiene la cabeza desalineada?'] %C10
+        ['Considera que el/ella tiene seguridad de sí mismo/misma?'], %C4
+        ['Considera que se siente emocionalmente conectado con usted?'], %C3
+        ['Considera que es alguien NO toxico para usted?'], %C2
+        ['Lo/la nota feliz?'] %C1
         ]).
 
 preguntas_db(feedback, [
@@ -369,68 +380,68 @@ preguntas_db(nombre, [
 % LAS REFERENCIAS SE NUMERAN COMO R + NUMERO DE REFERENCIA EN TABLA CSR.
 
 referencias(impresora, [
-        ['https://bit.ly/2ke9Xy9'], %R1
-        ['https://bit.ly/2lv5vLG'], %R2
-        ['https://bit.ly/2lv5vLG'], %R3
-        ['https://bit.ly/2lwYERM'], %R4
-        ['https://apple.co/1MdJTU2'], %R5
-        ['https://bit.ly/2jYsoqi'], %R6
-        ['https://bit.ly/2khQ3lV'], %R7
-        ['https://bit.ly/1LJKg8L'], %R8
+        ['https://amzn.to/2jVFTHe'], %R10
         ['https://bit.ly/2lv5WFO'], %R9
-        ['https://amzn.to/2jVFTHe'] %R10
+        ['https://bit.ly/1LJKg8L'], %R8
+        ['https://bit.ly/2khQ3lV'], %R7
+        ['https://bit.ly/2jYsoqi'], %R6
+        ['https://apple.co/1MdJTU2'], %R5
+        ['https://bit.ly/2lwYERM'], %R4
+        ['https://bit.ly/2lv5vLG'], %R3
+        ['https://bit.ly/2lv5vLG'], %R2
+        ['https://bit.ly/2ke9Xy9'] %R1
         ]).
 
 referencias(computadora, [
-        ['https://apple.co/2jXY7Ih'], %R1
-        ['https://apple.co/2eXIP0Z'], %R2
-        ['https://apple.co/2eXIP0Z'], %R3
-        ['https://apple.co/1ETEzVa'], %R4
-        ['https://apple.co/1MdJTU2'], %R5
-        ['https://apple.co/2ltdPeN'], %R6
-        ['https://apple.co/2luWvGq'], %R7
-        ['https://apple.co/2lwaWKc'], %R8
+        ['https://apple.co/1wEVLt4'], %R10
         ['https://apple.co/1Npc1uP'], %R9
-        ['https://apple.co/1wEVLt4'] %R10
+        ['https://apple.co/2lwaWKc'], %R8
+        ['https://apple.co/2luWvGq'], %R7
+        ['https://apple.co/2ltdPeN'], %R6
+        ['https://apple.co/1MdJTU2'], %R5
+        ['https://apple.co/1ETEzVa'], %R4
+        ['https://apple.co/2eXIP0Z'], %R3
+        ['https://apple.co/2eXIP0Z'], %R2
+        ['https://apple.co/2jXY7Ih'] %R1
         ]).
 
 referencias(parlante, [
-        ['https://bit.ly/2ke9Xy9'], %R1
-        ['https://bit.ly/2kqjWjR'], %R2
-        ['https://bit.ly/2jXhfpF'], %R3
-        ['https://bit.ly/2jXhfpF'], %R4
-        ['https://bit.ly/2GdDwcr'], %R5
-        ['https://bit.ly/2GdDwcr'], %R6
-        ['https://bit.ly/2luXx5g'], %R7
-        ['https://bit.ly/2lZcXyT'], %R8
+        ['https://amzn.to/2lYlH8o'], %R10
         ['https://bit.ly/2lukQfx'], %R9
-        ['https://amzn.to/2lYlH8o'] %R10
+        ['https://bit.ly/2lZcXyT'], %R8
+        ['https://bit.ly/2luXx5g'], %R7
+        ['https://bit.ly/2GdDwcr'], %R6
+        ['https://bit.ly/2GdDwcr'], %R5
+        ['https://bit.ly/2jXhfpF'], %R4
+        ['https://bit.ly/2jXhfpF'], %R3
+        ['https://bit.ly/2kqjWjR'], %R2
+        ['https://bit.ly/2ke9Xy9'] %R1
         ]).
 
 referencias(audifonos, [
-        ['https://bose.life/2PCKJnX'], %R1
-        ['https://bose.life/2CghDXq'], %R2
-        ['https://bose.life/2kq8Jjj'], %R3
-        ['https://bose.life/2lhW6mU'], %R4
-        ['https://bose.life/2Fdebzg'], %R5
-        ['https://bose.life/2JBWGLo'], %R6
-        ['https://bose.life/2IPNRs4'], %R7
-        ['https://bose.life/2IPNRs4'], %R8
+        ['https://amzn.to/2lAO0cE'], %R10
         ['https://bose.life/2GK8yJA'], %R9
-        ['https://amzn.to/2lAO0cE'] %R10
+        ['https://bose.life/2IPNRs4'], %R8
+        ['https://bose.life/2IPNRs4'], %R7
+        ['https://bose.life/2JBWGLo'], %R6
+        ['https://bose.life/2Fdebzg'], %R5
+        ['https://bose.life/2lhW6mU'], %R4
+        ['https://bose.life/2kq8Jjj'], %R3
+        ['https://bose.life/2CghDXq'], %R2
+        ['https://bose.life/2PCKJnX'] %R1
         ]).
 
 referencias(pareja, [
-        ['https://bit.ly/2kgGaVA'], %R1
-        ['https://bit.ly/2keguc9'], %R2
-        ['https://bit.ly/2kt1uaa'], %R3
-        ['https://bit.ly/2lSoK1H'], %R4
-        ['https://bit.ly/2lSoK1H'], %R5
-        ['https://bit.ly/2DIHSXH'], %R6
-        ['https://bit.ly/2jYyqaq'], %R7
-        ['https://bit.ly/2H9DnXR'], %R8
+        ['https://bit.ly/2krphYc'], %R10
         ['https://bit.ly/2kqsdUQ'], %R9
-        ['https://bit.ly/2krphYc'] %R10
+        ['https://bit.ly/2H9DnXR'], %R8
+        ['https://bit.ly/2jYyqaq'], %R7
+        ['https://bit.ly/2DIHSXH'], %R6
+        ['https://bit.ly/2lSoK1H'], %R5
+        ['https://bit.ly/2lSoK1H'], %R4
+        ['https://bit.ly/2kt1uaa'], %R3
+        ['https://bit.ly/2keguc9'], %R2
+        ['https://bit.ly/2kgGaVA'] %R1
         ]).
 
 % DEFINICION DE ENTRADAS

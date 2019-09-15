@@ -43,7 +43,8 @@ conversacion:-
   repeat,
   imprimir_usuario(usuario),
   readin(S),
-  generar_respuesta(S,R),
+  append(S,[' n'],M), % Evita el
+  generar_respuesta(M,R),
   imprimir_usuario(bot),
   imprimir_lista(R),
     salir(S),
@@ -261,6 +262,10 @@ obtener_dispositivo:-
   imprimir_usuario(usuario),readin(S),
   obtener_dispositivo(S).
 
+% Clausa de salida del bucle de detección de problemas
+obtener_dispositivo(D):-
+  member('salir',D), !,fail.
+
 obtener_dispositivo(D):-
   verificar_dispositivo(D),!.
 
@@ -284,7 +289,7 @@ conoce_el_problema(S):-
   afirmativo(S), !,
   imprimir_usuario(bot),
   write('¡Sí lo sabes! ¡Entonces dime cuál es!\n'),
-  imprimir_usuario(usuario),readin(P),
+  imprimir_usuario(usuario),readin(M),append(M,[' n'],P),
   verificar_problema(P).
 
 % Si no lo conoce, se procede a realizar obtener_problema
@@ -502,3 +507,5 @@ print_report:-
 %         retract(information(X, Y)), fail.
   print_report.
 %------------------ FIN DEL CODIGO ----------------------
+
+:- consultar.
