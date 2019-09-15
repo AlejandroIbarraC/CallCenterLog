@@ -69,7 +69,7 @@ oracion(S0, S) :-
 
 oracion(S0, S) :-
     sintagma_nominal(Num, Gen, Pers, S0, S1),
-    pronombre_relativo(S1, S2),
+    pronombre(S1, S2),
     sintagma_verbal(Num, Gen, Pers, S2, S).
 
 oracion(S0, S) :-
@@ -226,6 +226,7 @@ pronombre([que|S], S).
 
 %------------------------------SUSTANTIVOS------------------------------%
 
+sustantivo(sing, fem, [archivo|S],S).
 sustantivo(sing, masc, [archivo|S],S).
 sustantivo(sing, fem, [computadora|S], S).
 sustantivo(sing, fem, [mac|S], S).
@@ -257,6 +258,7 @@ verbo(sing, segunda, [apague|S], S).
 
 %------B------%
 %------C------%
+verbo(sing, segunda, [corre|S], S).
 % comentar
 verbo(sing, primera, [comento|S], S).
 
@@ -404,4 +406,3 @@ verbo(sing, tercera, [vea|S], S).
 %_________________ X ____________
 %_________________ Y ____________
 %_________________ Z ____________
-

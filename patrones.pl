@@ -103,6 +103,7 @@ patronProblema([no, estan, funcionando, X |_], X):- !.
 patronProblema([mal, funcionamiento, X |_], X):-!.
 patronProblema([funciona, mal, X |_], X):- !.
 patronProblema([funcionan, mal, X |_], X):- !.
+patronProblema([funcionar, X |_], X):- !.
 
 %~ daños
 patronProblema([esta, dañado, X|_], X):- !.
@@ -112,15 +113,27 @@ patronProblema([se,daño, X|_], X):-!.
 patronProblema([se,dañaron, X|_], X):-!.
 patronProblema([un,daño, X|_], X):-!.
 
-%~ otros
+% Expresiones varias
+patronProblema([no, corre, X |_], X):-!.
 patronProblema([algo, anda, mal, X |_], X):-!.
 patronProblema([presenta, un, error, X |_], X):-!.
 patronProblema([esta, malo, X |_], X):-!.
 patronProblema([estan, malos, X |_], X):-!.
+patronProblema([no, sirve, X |_], X):-!.
+patronProblema([tengo, un, inconveniente, X |_], X):-!.
+patronProblema([tengo, inconvenientes, X |_], X):-!.
+patronProblema([presento, un, inconveniente, X |_], X):-!.
+patronProblema([presenta, un, inconveniente, X |_], X):-!.
+patronProblema([se, me, presenta, un, inconveniente, X |_], X):-!.
+patronProblema([tengo, dificultades, X |_], X):-!.
+patronProblema([tengo, una, dificultad, X |_], X):-!.
+patronProblema([dificultades, X |_], X):-!.
+patronProblema([dificultad, X |_], X):-!.
+
 patronProblema([_|T], X):-
   patronProblema(T, X).
 
-%patronProbRef/4
+% patronProbRef/4
 
 % Problema-Referencia de impresora
 patronProbRef(impresora,[no, imprime, X|_],X, [9,5,4]):- !.
@@ -131,6 +144,7 @@ patronProbRef(impresora,[la, impresion, sale, sucia, X|_],X, [3,2]):- !.
 
 % Problema-Referencia de computadora
 patronProbRef(computadora,[no, trabaja, X|_],X, [10,9,4]):- !.
+
 
 % Problema-Referencia de parlante
 patronProbRef(parlante,[no, suena, X|_],X, [10,9,8,7]):- !.
@@ -216,6 +230,9 @@ patronCausa(pareja, [esta, sucia, X |_], X, NS):- !, NS is 3.
 patronCausa(pareja, [esta, viejo, X |_], X, NS):- !, NS is 2.
 patronCausa(pareja, [esta, vieja, X |_], X, NS):- !, NS is 2.
 patronCausa(pareja, [cabeza, desalineada, X |_], X, NS):- !, NS is 1.
+
+% Causas celular
+% patronCausa(celular, [no, hace,llamada, X|_], X, N) :- !.
 
 % patronCausa( Dispositivo, Lista, Comparador, Número de Solución).
 patronCausa(D, [_|T], X, NS):-

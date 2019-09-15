@@ -138,7 +138,7 @@ respuestas(incompresion,[
         ['No he entendido lo que dices.'],
         ['Disculpa..¿Qué?'],
         ['¿Qué clase de Klingon hablas?'],
-        ['Hablo 6 millones de idiomas y no entendí lo dijiste..'],
+        ['Hablo 6 millones de idiomas y no entendí lo que dijiste..'],
         ['Ni R2D2 entendería lo que dices!'],
         ['Quizá Siri sepa!'],
         ['Eskiusmi??'],
@@ -353,7 +353,7 @@ preguntas_db(pareja, [
         ['Considera que el/ella tiene seguridad de sí mismo/misma?'], %C4
         ['Considera que se siente emocionalmente conectado con usted?'], %C3
         ['Considera que es alguien NO toxico para usted?'], %C2
-        ['Lo/la nota triste?'] %C1
+        ['Lo/la nota feliz?'] %C1
         ]).
 
 preguntas_db(feedback, [
