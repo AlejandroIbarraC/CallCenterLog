@@ -99,16 +99,18 @@ El archivo a consultar mediante el intérprete es ```chat.pl```. Una vez iniciad
     
 <p align='justify'>Si quieres más información, te dejamos en la carpeta <b>papers</b>, material altamente útil sobre <i>Lenguaje Natural, gramáticas libres de contexto (GLCs) y Sistemas Expertos</i> de David H. Warren y Fernando Pereira, pioneros en la programación lógica y Prolog.</p>
 
-## Autores
+## Autores / Authors 👨🏻‍💻
 
 * **Esteban Alvarado** - *Desarrollador Principal de Lógica y Enrutamiento* - [estalvgs1999](https://github.com/estalvgs1999)
 * **Alejandro Ibarra** - *Desarrollador Principal de Patrones y Procesamiento de Lenguaje* - [AlejandroIbarraC](https://github.com/AlejandroIbarraC)
 * **Jesús Sandoval** - *Documentación* - [shuzz22260427](https://github.com/shuzz22260427)
 
-> Agradecemos a <a href="https://github.com/jlsalmon/chatbot">jsalmon </a> cuyo código fue un importante punto de referencia para el desarrollo de CallCenterLog
-
-## Licencia
+## Licencia / License 📄
 Este proyecto está bajo la Licencia (GNU GENERAL PUBLIC LICENSE) - mira el archivo [LICENSE](https://bit.ly/2HvVhCP) para detalles.
+
+## Reconocimientos / Acknowledgements 📎
+
+* Chatbot por jsalmon - [jsalmon/chatbot](https://github.com/jlsalmon/chatbot)
 
 ***
 <p align="center">
